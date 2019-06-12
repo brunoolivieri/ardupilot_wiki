@@ -67,6 +67,7 @@ based upon your set-up.
     TeraRanger One Rangefinder <common-teraranger-one-rangefinder>
     TerraRanger Tower (360 degree) <common-teraranger-tower-objectavoidance>
     Underwater Sonar (Analog) <common-underwater-sonar-analog>
+	Triducer <common-triducer>
 
 [site wiki="copter"]
     Analog Sonar (AC3.1) <sonar>
