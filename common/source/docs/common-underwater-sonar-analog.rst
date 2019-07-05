@@ -59,3 +59,4 @@ Data screen's Status tab. Look closely for "sonarrange".
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg
+

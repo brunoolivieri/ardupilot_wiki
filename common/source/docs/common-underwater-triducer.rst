@@ -1,15 +1,15 @@
-.. _common-triducer:
+.. _common-underwater-triducer:
 
 [copywiki destination="copter,plane,rover"]
 
-=======================
+========
 Triducer
-=======================
+========
 
-Triducer combines Speed, temperature and Depth into one Transducer.
+Triducer combines Speed, temperature and Depth into one Transducer. These instructions were provided by `Evan at the bottom of this ardupilot.org blog post <https://discuss.ardupilot.org/t/affordable-transducer-for-autonomous-boat/39484>`__
 
 Mounting the triducer
-----------------------
+---------------------
 
 The following example provides schematics to install a triducer on a Pixhawk and uses these parts:
 
