@@ -6,7 +6,7 @@ Sonars
 
 Boats support some different sonars, which can be useful to sail using applications detecting underwater information such as temperature, speed, fishes, and etc.
 
-Follow the links below (or in sidebar) for configuration information based upon your set-up.
+Follow the links below (or in the sidebar) for configuration information based upon your set-up.
 
 .. toctree::
     :maxdepth: 1

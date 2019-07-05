@@ -6,7 +6,7 @@
 Triducer
 ========
 
-Triducer combines Speed, temperature and Depth into one Transducer. These instructions were provided by `Evan at the bottom of this ardupilot.org blog post <https://discuss.ardupilot.org/t/affordable-transducer-for-autonomous-boat/39484>`__
+Triducer combines Speed, temperature, and Depth into one Transducer. These instructions were provided by `Evan at the bottom of this ardupilot.org blog post <https://discuss.ardupilot.org/t/affordable-transducer-for-autonomous-boat/39484>`__
 
 Mounting the triducer
 ---------------------
@@ -37,4 +37,4 @@ It is possible to connect the tricuder (or other transducers) to a computer thro
 
 .. note::
 
-	This page needs some improvement. Please, help this task by open an issue on GitHub with more useful information to add here.
+	This page needs some improvement. Please, help this task by opening an issue on GitHub with more useful information to add here.
