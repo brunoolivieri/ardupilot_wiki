@@ -33,7 +33,7 @@ Parameters for this particular hawdware:
 Troubleshooting
 ---------------
 
-It is possible to connect the tricuder (or other transducers) to a computer through an RS-485 to USB converter. Once it is properly working, it is possible to connect to the appropriate COM port with a 4800 baud rate.
+It is possible to connect the triducer (or other transducers) to a computer through an RS-485 to USB converter. Once it is properly working, it is possible to connect to the appropriate COM port with a 4800 baud rate.
 
 .. note::
 
