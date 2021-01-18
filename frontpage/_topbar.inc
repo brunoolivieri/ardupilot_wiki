@@ -1,0 +1,76 @@
+
+ <nav class="navbar navbar-expand-md navbar-dark bg-dark ">
+
+  <div class="container">
+    
+	<a class="navbar-brand ml-auto mr-auto" href="#">
+          <img src="images/ArduPilot-Motto.png" alt="ArduPilot" title="ArduPilot" class="embed-responsive" media="(max-width: 767.98px)">
+    </a>
+	
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+		<span class="navbar-toggler-icon"></span>
+	  </button>
+
+    
+  <div class="navbar-collapse collapse" id="navbarSupportedContent">
+  
+    <ul class="navbar-nav mr-auto  ">
+	
+	  <li class="nav-item active">
+        <a class="nav-link" href="/">HOME</a>
+      </li>
+	 
+	  <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ABOUT</a>
+		<div class="dropdown-menu" aria-labelledby="dropdown01">
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/events.html">Events</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/common-history-of-ardupilot.html">History</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/license-gplv3.html">License</a>
+		  <a class="dropdown-item" href="partners.html">Partners</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/roadmap.html">Roadmap</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/common-training-centers.html">Schools</a>
+		  <a class="dropdown-item" href="team.html">Team</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/common-team.html">Top Contributors</a>
+		  <a class="dropdown-item" href="https://ardupilot.org/dev/docs/job-openings.html">Volunteer</a>
+		</div>
+	  </li>
+	  
+	  <li class="nav-item active">
+        <a class="nav-link" href="http://discuss.ardupilot.org/c/blog">BLOGS </a>
+      </li>
+	  
+	  <li class="nav-item active">
+        <a class="nav-link text-nowrap" href="cases-lading-page.html">USE CASES</a>
+      </li>
+	  
+	  <li class="nav-item active">
+        <a class="nav-link" href="documentation-lading-page.html">DOCUMENTATION</a>
+      </li>
+	  
+	  <li class="nav-item active">
+        <a class="nav-link" href="common-stores.html">STORES</a>
+      </li>
+	  
+	  <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">COMMUNITY</a>
+		<div class="dropdown-menu" aria-labelledby="dropdown02">
+		<a class="dropdown-item" href="commercial-support.html">Commercial Support</a>
+		<a class="dropdown-item" href="https://ardupilot.org/copter/docs/common-contact-us.html">Contact Us</a>
+		<a class="dropdown-item" href="https://ardupilot.org/discord">Developer Chat</a>
+		<a class="dropdown-item" href="https://discuss.ardupilot.org">Discuss Forums</a>
+		<a class="dropdown-item" href="https://www.facebook.com/groups/ArduPilot.org">Facebook</a>		
+		  <a class="dropdown-item" href="gsoc-lading-page.html">GSOC</a>
+		  <a class="dropdown-item" href="https://twitter.com/hashtag/Ardupilot?src=hash">Twitter</a>
+		  <a class="dropdown-item" href="https://www.youtube.com/channel/UCtqkaA8BWDpISGNAfivUSHw">YouTube</a>
+		  <a class="dropdown-item" href="https://www.instagram.com/explore/tags/ardupilot/?hl=en">Instagram</a>
+		</div>
+	   </li>	  
+
+    </ul>
+  </div>
+  
+  </div>
+</nav>
+
+
+

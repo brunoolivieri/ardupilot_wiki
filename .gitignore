@@ -28,6 +28,9 @@
 *.html
 *.pyc
 
+# Forces frontpage files
+!/frontpage/*
+
 # Vagrant
 /.vagrant
 

@@ -1,0 +1,50 @@
+[
+    {
+        "title": "ArduPilot \"latest\" switched to use EKF3 by default",
+        "image": "https://discuss.ardupilot.org/uploads/default/original/3X/2/0/207a3e3cd76c443f38c41e014c20dcb3a691ad0a.png",
+        "link": "https://discuss.ardupilot.org/t/ardupilot-latest-switched-to-use-ekf3-by-default/66334",
+        "text": " image706×252 11.4 KB  For those developers who fly “latest” (aka “master”) we have just changed the default AHRS (Attitude Heading Referenc (...)"
+    },
+    {
+        "title": "Single helicopter flight test Good stable",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/single-helicopter-flight-test-good-stable/66199",
+        "text": "ArduPilot copter parameter settings have been decided. I think it’s a great flight.   (...)"
+    },
+    {
+        "title": "ArduPilot Monthly Update for Jan 2021",
+        "image": "https://discuss.ardupilot.org/uploads/default/original/3X/d/4/d475d303d23e0a38a0c849f6a0d873e471539966.png",
+        "link": "https://discuss.ardupilot.org/t/ardupilot-monthly-update-for-jan-2021/66047",
+        "text": " Here are the slides from the monthly report for Jan 2021 presented by Tridge, Randy and a few others at the monthly Partners call. The imag (...)"
+    },
+    {
+        "title": "Smart battery project from CUAV",
+        "image": "https://discuss.ardupilot.org/uploads/default/optimized/3X/7/6/76be1231b5445500e4f6a12a0ce3d4065f855988_2_690x405.jpeg",
+        "link": "https://discuss.ardupilot.org/t/smart-battery-project-from-cuav/65940",
+        "text": "CUAV has spent several years developing smart batteries. Through continuous testing and improvement. I am very happy to share CUAV Smart Bat (...)"
+    },
+    {
+        "title": "High altitude balloon glider, test from low altitude balloon",
+        "image": "https://discuss.ardupilot.org/uploads/default/original/3X/0/b/0bccf53cb86bdbc7e99f180f605fbcdd118a7551.gif",
+        "link": "https://discuss.ardupilot.org/t/high-altitude-balloon-glider-test-from-low-altitude-balloon/65799",
+        "text": "About time I update this The HAB Glider project aims to return Radisondes from 100,000 feet by an autonomous glider. Our glider, Clementine, (...)"
+    },
+    {
+        "title": "Mapping Quad to Africa for OpenMap Tanzania. Anyone got anything to donate?",
+        "image": "https://discuss.ardupilot.org/uploads/default/optimized/3X/b/f/bf8c0740e8a06dffdaac14aba10b633feb53377c_2_645x500.jpeg",
+        "link": "https://discuss.ardupilot.org/t/mapping-quad-to-africa-for-openmap-tanzania-anyone-got-anything-to-donate/65756",
+        "text": "A Facebook post by @Walter_Volkmann caught my eye a few months ago about a guy in Tanzania named Bornlove Ntikha flying with Ardupilot Bambo (...)"
+    },
+    {
+        "title": "Tethered Drone Hoists Holiday Tree",
+        "image": "https://discuss.ardupilot.org/uploads/default/original/3X/b/b/bb4e951ff494c8ffe1ed273185a5d19a843e9c6c.jpeg",
+        "link": "https://discuss.ardupilot.org/t/tethered-drone-hoists-holiday-tree/65610",
+        "text": " tree800×600 74.3 KB  2020 has been an interesting year for everyone. Everybody is keeping indoors, and everything has gone virtual. And des (...)"
+    },
+    {
+        "title": "ArduPilot Devs Inside : IDE poll",
+        "image": "https://discuss.ardupilot.org/uploads/default/original/3X/8/7/871c160fb7771c49b6619b2b15efc87461dfec78.jpeg",
+        "link": "https://discuss.ardupilot.org/t/ardupilot-devs-inside-ide-poll/65492",
+        "text": " image509×640 53.1 KB  Hello guys, The other day, a dev posted this funny picture about Vim editor, and some debate started. We take this op (...)"
+    }
+]

@@ -1,0 +1,50 @@
+[
+    {
+        "title": "Dev Call Jan 18, 2021",
+        "image": "https://avatars2.githubusercontent.com/u/831867?v=4",
+        "link": "https://discuss.ardupilot.org/t/dev-call-jan-18-2021/66454",
+        "text": "Issues &amp; Pull Requests           github.com/ArduPilot/ardupilot                                      Fixed support for no baro boards    (...)"
+    },
+    {
+        "title": "Copter interrupts mission and automatically initiates RTL. But why?",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/copter-interrupts-mission-and-automatically-initiates-rtl-but-why/66455",
+        "text": "Hi there, I need some expert help: My octocopter starts for the autonomy mission, but breaks off the mission after a short time, usually at  (...)"
+    },
+    {
+        "title": "Pixhawk not working with power module",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/pixhawk-not-working-with-power-module/66446",
+        "text": "Hi! Recently I bought a pixhawk 2.4.7 FC and tried powering it on using the power module. But as soon as I connect  the power module, it get (...)"
+    },
+    {
+        "title": "SIK Radio not connecting after changing to Matek H743",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/sik-radio-not-connecting-after-changing-to-matek-h743/66388",
+        "text": "Hello all, I’m upgrading a copter from RadioLink MiniPix to Matek H743. The SIk radio was working fine but once installed in the new flight  (...)"
+    },
+    {
+        "title": "QuadPlane ESC signal for prop pitch control",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/quadplane-esc-signal-for-prop-pitch-control/66435",
+        "text": "Hello, I am working on a quadplane with variable pitch props, using the Plane image. As I know, the HeliQuad feature of the Copter image is  (...)"
+    },
+    {
+        "title": "Holybro Pixhawk 4 FMU-v5 Bootloader Erased",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/holybro-pixhawk-4-fmu-v5-bootloader-erased/66251",
+        "text": "Hello; I bought the Holybro Pixhawk 4 Flight Controller, FMU-v5 was pre-loaded. I looked over QGC and Mission Planner, lot’s of flyers said  (...)"
+    },
+    {
+        "title": "SmartAudio for VTX Mateksys 405 WING",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/smartaudio-for-vtx-mateksys-405-wing/58329",
+        "text": "Hello All, This is my first post here and I’m new to the hobby so please excuse and noobness. I have a Mateksys 405 FC with a VTX with a Sma (...)"
+    },
+    {
+        "title": "Large Copter tuning help - DJI E5000 M10 PRO propulsion",
+        "image": null,
+        "link": "https://discuss.ardupilot.org/t/large-copter-tuning-help-dji-e5000-m10-pro-propulsion/66452",
+        "text": "I bought a Crop Sprayer frame form a Chinese company already with propulsion system and I´m not  managing to adjust the PID. I´m using Cube  (...)"
+    }
+]
