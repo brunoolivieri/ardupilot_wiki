@@ -67,3 +67,5 @@ port numbers depending on your environment.
     Setting Up SITL <SITL-setup-landingpage>
     Using SITL <using-sitl-for-ardupilot-testing>
     Examples of using SITL by Vehicle <sitl-examples>
+    SITL Serial Port Mapping <sitl-serial-mapping>
+    SITL Parameter List <sitl-parameters>

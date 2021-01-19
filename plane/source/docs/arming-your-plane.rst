@@ -12,11 +12,6 @@ before flight has two purposes:
 -  prevent takeoff before the autopilot is fully configured and ready to
    fly
 
-In past releases of ArduPlane, arming was optional, and the requirement
-to arm (controlled by the :ref:`ARMING_REQUIRE<ARMING_REQUIRE>` parameter) was disabled by
-default. This was changed for the 3.3.0 release to require arming by
-default.
-
 The key thing that arming does is to enable the motor. You will not be
 able to start the motor (ie. control the throttle) until the aircraft is
 armed.
@@ -78,7 +73,7 @@ How to Arm
 ==========
 
 When you are ready to fly you can ask Plane to arm. This can be done in
-two ways:
+three ways:
 
 -  **Rudder Arming**. Hold the rudder stick fully to the right and the
    throttle stick fully down for 2 seconds.
@@ -93,7 +88,11 @@ two ways:
 How to Disarm
 =============
 
-Since ArduPlane 3.4.0 it is possible to disarm using the transmitter.
+-  If setup, you can use the **ARM/DISARM** RC_xOPTION switch.
+
+.. warning:: This is **UNCONDITIONAL**. If done while in flight, all motors disarm and you must have throttle at idle before re-arming can occur!
+
+It is also possible to disarm using the transmitter.
 This is done holding throttle at minimum and rudder to the left for 2
 seconds. In ArduPlane this condition could be accidentally triggered by
 pilots while flying so there are additional requirements prior to disarm:
@@ -111,8 +110,8 @@ You can also disarm without using the transmitter with one of the
 following methods:
 
 -  use a ground station to issue a disarm command
--  use the safety switch on your aircraft (on Pixhawk)
--  after an auto-landing the plane will automatically disarm after 20
+-  use the safety switch on your aircraft (if using a :ref:`common-safety-switch-pixhawk`)
+-  after an auto-landing (either via mission or QLAND in QuadPlane) the plane will automatically disarm after 20
    seconds if still on the ground (controlled by :ref:`LAND_DISARMDELAY<LAND_DISARMDELAY>`
    parameter)
 

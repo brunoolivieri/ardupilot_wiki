@@ -71,7 +71,7 @@ Default UART order
 - SERIAL2 = Telemetry2 = UART4
 - SERIAL3 = GPS1 = USART1
 - SERIAL4 = GPS2 = UART5
-- SEIRAL5 = User = USART2 (TX only unless :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` = 1, then RX is available)
+- SERIAL5 = User = USART2 (TX only unless :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` = 1, then RX is available)
 
 Serial protocols can be adjusted to personal preferences.
 
@@ -100,3 +100,10 @@ This board does not include a GPS or compass so an :ref:`external GPS/compass <c
     :width: 450px
 
 A battery must be plugged in for power to be provided to the 5V pins supplying the GPS/compass modules. USB power is not provided to peripherals.
+
+Wiring Diagram
+==============
+
+.. image:: ../../../images/MatekF405-STD.jpg
+    :target: ../../_images/MatekF405-STD.jpg
+    

@@ -88,7 +88,7 @@ Assembly
 #. **Mount the GPS facing up with an unobstructed "view" of the sky.**
 
    #. Connect the GPS cable to the GPS connector on the PX4FMU board.
-   #. The GPS must be positioned so that it's cable will connect without
+   #. The GPS must be positioned so that its cable will connect without
       strain to the PX4FMU's GPS connector.
    #. The GPS can be mounted on a short riser to give it the widest
       satellite access.
@@ -222,7 +222,7 @@ PX4FMU is compatible with PPM remote control (RC) receivers, Futaba S.Bus
 receivers, and Spektrum DSM,DSM2, and DSM-X Satellite receivers. For
 traditional single-wire-per-channel (PWM) receivers a PPM encoder can be
 used to convert the receiver outputs to PPM-SUM.  Information about
-compatible receivers and how they are connected can be found in :ref:`this wiki page <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>`.
+compatible receivers and how they are connected can be found in :ref:`this wiki page <common-rc-systems>`.
 
 .. figure:: ../../../images/FRSkyTaranis.jpg
    :target: ../_images/FRSkyTaranis.jpg

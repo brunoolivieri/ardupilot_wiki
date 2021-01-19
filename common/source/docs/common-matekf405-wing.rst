@@ -30,7 +30,7 @@ Specifications
 -  **Sensors**
 
    -  InvenSense MPU6000 IMU (accel, gyro)
-   -  BMP280 barometer
+   -  BMP280 barometer (later models use DPS310)
    -  Voltage & current sensor
 
 
@@ -90,7 +90,7 @@ The SBUS pin can be used for all ArduPilot supported receiver protocols. However
 
 Battery Monitor Configuration
 =============================
-These settings are set as defaults when the firmware is loaded. However, if they are ever lost, you can manually set the parameters:
+These settings are set as defaults when the firmware is loaded (except :ref:`BATT_AMP_PERVLT<BATT_AMP_PERVLT>` which needs to be changed from the default value). However, if they are ever lost, you can manually set the parameters:
 
 Enable Battery monitor.
 
@@ -120,4 +120,4 @@ This board does not include a GPS or compass so an :ref:`external GPS/compass <c
     :target: ../_images/matekf405-wing-with-gps.png
     :width: 450px
 
-A battery must be plugged in for power to be provided to the 5V pins supplying the GPS/compass modules.
+.. note:: A battery must be plugged in for power to be provided to the 5V pins supplying the GPS/compass modules.

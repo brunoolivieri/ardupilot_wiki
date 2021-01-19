@@ -81,7 +81,7 @@ Help is available:
 
 ::
 
-    ./Tools/autotest/autotest.py build.ArduCopter fly.ArduCopter
+    ./Tools/autotest/autotest.py build.Copter test.Copter
 
 This command is valid in the root directory of an ArduPilot checkout.  It instructs AutoTest to build the ArduCopter SITL binary, start that binary, test it and then kill it.  The output (:ref:`sample <autotest-verbose>`) is extremely verbose, but a summary is given once all steps have been run.
 
@@ -89,8 +89,13 @@ This command is valid in the root directory of an ArduPilot checkout.  It instru
     :maxdepth: 1
 
      AutoTest Sample Output <autotest-verbose>
-     
-A list of available steps is available with ``--list``.
+
+.. note:: 
+   Older versions of ``autotest.py`` used these steps: ``build.ArduPlane build.ArduCopter build.APMrover2 build.ArduSub build.AntennaTracker fly.ArduCopter   
+   fly.ArduCopter fly.ArduPlane fly.QuadPlane dive.ArduSub drive.APMrover2 drive.BalanceBot drive.balancebot fly.CopterAVC``
+   
+.. note::
+   ``--list`` : list available steps (build, test, defaults, examples)
 
 .. note::
 
@@ -105,7 +110,7 @@ Complex Invocation
 
 ::
 
-   ./Tools/autotest/autotest.py --no-clean build.Copter fly.Copter build.Rover drive.Rover drive.balancebot build.Plane fly.Plane fly.Quadplane test.Tracker build.Sub dive.Sub build.Helicopter test.Helicopter build.Tracker test.Tracker
+   ./Tools/autotest/autotest.py --no-clean build.Copter test.Copter build.Rover test.Rover test.Balancebot build.Plane test.Plane test.Quadplane build.Sub test.Sub build.Helicopter test.Helicopter build.Tracker test.Tracker
 
 At time of writing, these invoke all the vehicle tests.  Expect these to take about 40 minutes to run.
 
@@ -116,7 +121,7 @@ To run a specific sub-test just add the test name with a '.' between the test an
 
 ::
 
-  ./Tools/autotest/autotest.py build.ArduPlane fly.ArduPlane.ThrottleFailsafe
+  ./Tools/autotest/autotest.py build.Plane test.Plane.ThrottleFailsafe
 
 
 Using with GDB
@@ -126,7 +131,7 @@ AutoTest can run the ArduPilot binary under gdb:
 
 ::
 
-   ./Tools/autotest/autotest.py --no-clean --gdb --debug build.ArduCopter fly.ArduCopter
+   ./Tools/autotest/autotest.py --no-clean --gdb --debug build.Copter test.Copter
 
 In an X Windowing System environment, an xterm window will contain the GDB terminal; stderr from the ArduPilot binary will also appear in this window.  Where X is not available but `GNU screen <https://www.gnu.org/software/screen/>`__ is, a detached screen will be created with the same content.
 
@@ -147,7 +152,7 @@ AutoTest can run the ArduPilot binary under the Valgrind memcheck tool.  This is
 
 ::
 
-   ./Tools/autotest/autotest.py --no-clean --valgrind --debug build.Rover drive.Rover
+   ./Tools/autotest/autotest.py --no-clean --valgrind --debug build.Rover test.Rover
 
 Special log files (e.g. ``arducopter-+-valgrind.log``) are created by autotest when run with this tool.  They should always be empty at the end of an autotest run.
 
@@ -171,7 +176,7 @@ DataFlash files are available in the "logs" directory:
    -rw-r--r-- 1 pbarker pbarker    73728 Jul 27 12:05 00000001.BIN
    pbarker@bluebottle:~/rc/ardupilot(master)$
 
-The mavlink telemetry logs are present in the "buildlogs" directory.  This directory is typically created one-level-higher than the ArduPilot root directory.
+The MAVLink telemetry logs are present in the "buildlogs" directory.  This directory is typically created one-level-higher than the ArduPilot root directory.
 
 ::
 
@@ -185,7 +190,7 @@ The mavlink telemetry logs are present in the "buildlogs" directory.  This direc
 
 .. warning::
 
-   Not all mavlink traffic involved in the testing is present in the buildlogs tlog file.  Only traffic to/from MAVProxy itself (as opposed to additional MAVProxy --outputs) is present.  See AutoTest Structure for more information.
+   Not all MAVLink traffic involved in the testing is present in the buildlogs tlog file.  Only traffic to/from MAVProxy itself (as opposed to additional MAVProxy --outputs) is present.  See AutoTest Structure for more information.
 
 Correlation of Output Files with the autotest server
 ....................................................
@@ -236,7 +241,7 @@ self.mav
    A mavudp object connected to a --output port provided by MAVProxy.  Traffic to this connection is not logged in the tlog.
 
 self.mav.mav
-   The mavudp's mavlink object.  Can be used to send messages via mavlink to the SITL binary: ``self.mav.mav.system_time_send(time.time() * 1000000, 0)``
+   The mavudp's MAVLink object.  Can be used to send messages via MAVLink to the SITL binary: ``self.mav.mav.system_time_send(time.time() * 1000000, 0)``
 
 RC Overrides
 ............
@@ -257,3 +262,26 @@ Adding a Test
    The autotest script is in flux.  This documentation may be out of date.
 
 The git commit e045f61473afa800afc241819cf890591fbecd5a in ArduPilot master's history is a reasonable example of adding an entirely new test to the ArduPilot suite.
+
+
+Conducting an automated git bisect with an autotest
+===================================================
+
+`Tools/autotest/bisect-helper.py` can be used as the script argument to `git bisect run`.  It can run an autotest test - by name - and tell you which commit broke that test.
+
+To accomplish this:
+
+    - make sure you're not already running a bisect - `git bisect reset`
+    - create a topic branch for your new test (based on master) which fails now but you know would have passed at some stage in the past
+    - write your test - which should fail on your topic branch, and commit it
+    - you can test your branch by creating a branch at some stage in the past and cherry-picking your test into that branch.  This may not be trivial depending on what changes have been made in the autotest framework
+    - `cp Tools/autotest/bisect-helper.py /tmp`  # always use modern helper
+    - `git bisect reset`
+    - `git bisect start`
+    - `git bisect bad`  - we know the test fails where it was written
+    - `git bisect good HEAD~1024`  - this is where we know the test passes
+    - `time git bisect run /tmp/bisect-helper.py --autotest --autotest-vehicle=Plane --autotest-test=NeedEKFToArm --autotest-branch=wip/bisection-using-named-test`
+
+In the last command you need to specify the vehicle, new test name and the name of the topic branch which contains your new test.
+
+After this has run you should know which commit broke the functionality being tested.  And you also have a new test for the regression suite which you should PR!

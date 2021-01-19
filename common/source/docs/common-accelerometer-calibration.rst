@@ -22,15 +22,14 @@ Calibration steps
 
 .. warning:: If the board is mounted in a non-standard orientation (i.e. arrow is not pointing forward) then please ensure the :ref:`AHRS_ORIENTATION<AHRS_ORIENTATION>`  is properly set before doing the accelerometer calibration.
 
-#. Under **Initial Setup \| Mandatory Hardware**, select **Accel
-   Calibration** from the left-side menu.
+- Under **Setup \| Mandatory Hardware**, select **Accel Calibration** from the left-side menu.
 
    .. figure:: ../../../images/mp_accelerometer_calibration.png
       :target: ../_images/mp_accelerometer_calibration.png
 
       Mission Planner: Calibrate Acceleration
 
-#. Click **Calibrate Accel** to start the calibration.
+- Click **Calibrate Accel** to start the calibration.
 
    *Mission Planner* will prompt you to place the vehicle each
    calibration position. Press any key to indicate that the autopilot is
@@ -44,8 +43,6 @@ Calibration steps
 
       Accelerometer Calibration Positions (Copter)
 
-[/site]
-
    .. tip::
 
          -  It is important that the vehicle is kept still immediately after
@@ -55,19 +52,20 @@ Calibration steps
          -  The level position is the most important to get right as this will
             be the attitude that your controller considers level while flying.
 
-#. Proceed through the required positions (it is not necessary to use
-   the **Click When Done** button).
+[site wiki="plane"]
+    For planes, often the optimum "level" position is actually done with the nose raised a few degrees (but the wings perfectly level). This is explained in the diagrams below. Most planes fly with a few degrees of Angle of Attack (AOA)and while many planes will have some Angle of Incidence built in, some do not, and some need a little higher AOA to fly at lower cruise speeds. If the level step of calibration is done with the plane's fuselage line level, then first flights will be safe, but cruise may be a bit fast. You can either set a few extra degrees nose up when doing the level step of calibration, or  decide after first flights if AOA needs to be increased for your desired cruise speed/throttle. If so, then you may redo the level only step using the  ``Calibrate Level`` button on the page.
 
-   .. figure:: ../../../images/mp_accel_calibration_press_any_key.jpg
-      :target: ../_images/mp_accel_calibration_press_any_key.jpg
+    .. image:: ../../../images/AOA.jpg
 
-      Mission Planner: Accel Calibration - press any key
 
-#. When you've completed the calibration process, Mission Planner will
-   display "Calibration Successful!" as shown below.
+ [/site]
 
-   .. figure:: ../../../images/mp_calibration_successful.jpg
-      :target: ../_images/mp_calibration_successful.jpg
+- Proceed through the required positions ,using the the **Click when Done** button after each position is reached.
+
+- When you've completed the calibration process, Mission Planner will display "Calibration Successful!" as shown below.
+
+   .. figure:: ../../../images/mp_calibration_successful.png
+      :target: ../_images/mp_calibration_successful.png
 
       Mission Planner: Calibration Successful
 
@@ -83,4 +81,3 @@ you might hold a Copter.
    :width: 400
    :height: 400
 
-[/site]

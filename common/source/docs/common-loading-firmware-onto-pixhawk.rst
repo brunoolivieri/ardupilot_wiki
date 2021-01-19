@@ -38,7 +38,7 @@ Set the Baud rate to **115200** as shown. Don't hit **Connect** just yet.
 Install firmware
 ================
 
-On the Mission Planner's **Initial Setup \| Install Firmware** screen
+On the Mission Planner's **SETUP \| Install Firmware** screen
 select the appropriate icon that matches your frame (i.e. Quad, Hexa). 
 Answer **Yes** when it asks you "Are you sure?".
 
@@ -47,25 +47,37 @@ Answer **Yes** when it asks you "Are you sure?".
 
    Mission Planner: Install FirmwareScreen
 
-After the GCS detects which board you are using it will ask you to unplug the board, plug it back in and then
-press **OK** within a few seconds (during this brief period the
-bootloader accepts requests to upload new firmware).
+Next it will try to detect which board you are using and it may ask you to unplug the board, press OK, and  plug it back in to detect the board type.
 
 .. figure:: ../../../images/Pixhawk_InstallFirmware2.png
    :target: ../_images/Pixhawk_InstallFirmware2.png
 
    Mission Planner: Install FirmwarePrompt
 
-Next you may be asked "Upload ChibiOS?".  Most users will not notice a significant difference regardless of how this is answered.
-
-  - "Yes" will load ArduPilot using the newer ChibiOS operating system which results in a smaller and more efficient firmware but has a few `missing features <https://github.com/ArduPilot/ardupilot/issues/8109>`__
-  - "No" will load ArduPilot using the older NuttX operating system.
-
-.. image:: ../../../images/loading-the-firmware-chibiOS-yes-no.png
 
 If all goes well you will see some status appear on the bottom right
 including the words, "erase...", "program...", "verify.." and "Upload
-Done".  The firmware has been succesfully uploaded to the board.
+Done".  The firmware has been successfully uploaded to the board.
+
+It usually takes a few seconds for the bootloader to exit and enter the main code after programming or a power-up. Wait to press CONNECT until this occurs.
+
+Using Beta and Developer Versions
+=================================
+
+Beta
+----
+
+Prior to ``Stable`` releases, a ``Beta`` version or versions get released. These may be used if you wish to try newer features or help the developers further flight test the code. Since they are "beta" versions, there possibly still may be bugs (although this is possible even in Stable firmware). However, it has been tested by the development team, and already flight tested. This release allows a wider user base to final test the firmware before its release as ``Stable``. Experienced ArduPilot users are encouraged to test fly this firmware and provide feedback.
+
+Mission Planner has an option on its **Install Firmware** page to upload this release, but its later ``Stable`` release may already be available, so be sure to check the normal vehicle upload option first.
+
+Latest Developer Version
+------------------------
+
+This reflects the current state of the development branch of the ArduPilot code. It has been reviewed by the development team, passed all automated test suites,  and in most cases, if significant changes have been made, test flown. This code gets built daily and is available for testing by experienced users. This corresponds to an "alpha" release, and may have bugs, although very rarely "crash inducing". Very shortly after an addition that changes or introduces a feature is added, the :ref:`Upcoming Features <common-master-features>` section of the Wiki is updated with information about the addition or change.
+
+This code must be manually downloaded from the `Firmware Downloads <firmware.ardupilot.org>`__ page as ``latest`` for your particular board, and then uploaded using Mission Planner's "Load Custom Firmware" option on its **Install Firmware Page**
+
 
 Testing
 =======

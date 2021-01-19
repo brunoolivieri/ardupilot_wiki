@@ -201,6 +201,53 @@ support for ArduPilot including vehicle design, tuning, log analysis, bug fixes 
             </div>
         </td>
     </tr>
+    <tr class="row-odd">
+        <td><center><a class="first last reference external image-reference" href="https://www.uav-dev.com"><img alt="UAV-DEV GmbH" src="../_images/uavdev.png" style="width: 90px;" /></a><br/><br/>Germany</center></td>
+        <td><div class="first last line-block">
+            <div class="line">UAV-DEV GmbH, Mirko Denecke, <a href="mailto:info@uav-dev.com" target="_top">info@uav-dev.com</a></div>
+            <div class="line"><br/></div>
+            <div class="line">ArduPilot integration, setup, support and troubleshooting.</div>
+            <div class="line">Customizations of ArduPilot code, ArduPilot ROS integration.</div>
+            </div>
+        </td>
+    </tr>
+    <tr class="row-odd">
+        <td><center><a class="first last reference external
+        image-reference" href="mailto:BrandonM@west.net"><img
+        alt="ELECTRIC KITE" src="../_images/ElectricKite.png" style="width: 90px;" /></a><br/><br/>USA</center></td>
+        <td><div class="first last line-block">
+            <div class="line">ELECTRIC KITE, Brandon MacDougall, <a href="mailto:BrandonM@west.net" target="_top">BrandonM@west.net</a></div>
+            <div class="line"><br/></div>
+            <div class="line">3D organic designer/modeller, simulation for the ArduPilot community.</div>
+            <div class="line">Airframe building, testing and consulting, troubleshooting.</div>
+            </div>
+        </td>
+    </tr>
+    <tr class="row-odd">
+        <td><center><a class="first last reference external image-reference" href="https://www.hivebotics.fr"><img alt="Hivebotics" src="../_images/hivebotics.png" style="width: 90px;" /></a><br/><br/>France</center></td>
+        <td><div class="first last line-block">
+            <div class="line">Hivebotics, Pierre Kancir, <a href="mailto:pierre.kancir@hivebotics.fr" target="_top">pierre.kancir@hivebotics.fr</a></div>
+            <div class="line"><br/></div>
+            <div class="line">With several years of developpement with ArduPilot, Pierre</div>
+            <div class="line">provides consulting services focused on code customization,</div>
+            <div class="line">review and support.</div>
+            <div class="line">Experienced in testing both on real and simulation,</div>
+            <div class="line">he can help to bring an automated testing framework.</div>
+            </div>
+        </td>
+    </tr>
+    <tr class="row-odd">
+        <td><center><a class="first last reference external image-reference" href="https://www.khunmanned.com/"><img alt="KH Unmanned" src="../_images/KHUnmanned_logo.png" style="width: 90px;" /></a><br/><br/>UK</center></td>
+        <td><div class="first last line-block">
+            <div class="line">KH Unmanned, Matthew Kear and Peter Hall, <a href="mailto:info@khunmanned.com" target="_top">info@khunmanned.com</a></div>
+            <div class="line"><br/></div>
+            <div class="line">Consulting services include: ArduPilot code development (C++, Lua)</div>
+            <div class="line">specialising in vehicle dynamics. Vehicle setup support and log</div>
+            <div class="line">analysis. For UK-based clients we offer a tuning service.</div>
+            <div class="line">Mechanical analysis (FEA). Aerodynamic analysis (CFD).  </div>
+            </div>
+        </td>
+    </tr>
     </tbody>
     </table>
 
@@ -266,4 +313,15 @@ listed here will be active participants in the community.
 .. image:: ../../../images/logos/aionrobotics.png
     :scale: 0%
 
-[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev,ardupilot"]
+.. image:: ../../../images/logos/uavdev.png
+    :scale: 0%
+
+.. image:: ../../../images/logos/ElectricKite.png
+    :scale: 0%
+    
+.. image:: ../../../images/logos/hivebotics.png
+    :scale: 0%
+            
+.. image:: ../../../images/logos/KHUnmanned_logo.png
+    :scale: 0%
+[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev,ardupilot,mavproxy"]

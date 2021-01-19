@@ -17,6 +17,17 @@ Copters from Partners
 * `Bask Aerospace - AeroDrone MR4 <http://www.baskaerospace.com.au/aerodrone/mr4>`__
 * `Hitec - SUI Endurance <https://hitecnology.com/drones/sui-endurance-multipurpose-professional-multirotor>`__
 * `SkyRocket - Journey <http://sky-viper.com/journey/>`__
+* `TT Robotix - X-1300 EagleEyes Quadcopter <http://www.ttrobotix.com/products/detail/923.html>`__
+* `TT Robotix - H2-X6 Phoenix H6 Multirotor <http://www.ttrobotix.com/products/detail/926.html>`__
+* `TT Robotix - X-450 Scout Quadcopter <http://www.ttrobotix.com/products/detail/928.html>`__
+
+Helicopters from Partners
+=========================
+
+* `TT Robotix - Thunder Hawk Helicopter <http://www.ttrobotix.com/products/detail/902.html>`__
+* `TT Robotix - SIRIUS Helicopter <http://www.ttrobotix.com/products/detail/905.html>`__
+* `TT Robotix - T-150 Maverick Helicopter <http://www.ttrobotix.com/products/detail/924.html>`__
+* `TT Robotix - CX-180 ICEMAN Helicopter <http://www.ttrobotix.com/products/detail/925.html>`__
 
 Planes from Partners
 ====================
@@ -66,4 +77,4 @@ Vehicles from Non-Partners
 
    If you are a manufacturer of a RTF vehicle based on ArduPilot and do not appear in this list, please get in touch through one of the methods listed on our :ref:`Contact Us page <common-contact-us>`.
 
-[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev,ardupilot"]
+[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev,ardupilot,mavproxy"]

@@ -6,11 +6,6 @@ LIDAR-Lite Rangefinder
 
 The `Garmin / PulsedLight LIDAR-Lite <https://support.garmin.com/support/manuals/manuals.htm?partNo=010-01722-00>`__ rangefinder is a low-cost optical distance measurement solution with a 40m range under most operating conditions, low power consumption, and small form factor.  This sensor can be purchased from many online retailers including `Sparkfun <https://www.sparkfun.com/products/14032>`__.  Technical info can be found `here <https://support.garmin.com/support/manuals/manuals.htm?partNo=010-01722-00>`__.
 
-.. note::
-
-   Support was added in Copter 3.3, Plane 3.3, and Rover 2.49.
-   ArduPilot supports LIDAR-Lite v1 (aka "Black Label"), v2 (aka "Blue Label") and v3.
-
 ..  youtube:: 3I06AOwIQVY
     :width: 100%
 
@@ -125,13 +120,13 @@ Testing the sensor
 
 Distances read by the sensor can be seen in the Mission Planner's Flight
 Data screen's Status tab.  Look closely for "sonarrange".
-Its best to place the Lidar several known distances (1m, 3m, 5m) from
+It's best to place the Lidar several known distances (1m, 3m, 5m) from
 a large flat wall to test it.  If the Lidar is constantly reading
-wrong by a fixed offset e.g. its always 50cm out at each distance then
+wrong by a fixed offset e.g. it's always 50cm out at each distance then
 adjust the ``RNGFNDx_OFFSET`` parameter by the correct amount.  If however
 it gets the distance wrong each time by a different amount then the
 ``RNGFNDx_SCALING`` parameter needs changing.  Update it (maybe 1.1 or 0.9)
-and test again and repeat until its correct.
+and test again and repeat until it's correct.
 
 .. image:: ../../../images/mp_rangefinder_lidarlite_testing.jpg
     :target: ../_images/mp_rangefinder_lidarlite_testing.jpg

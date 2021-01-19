@@ -95,17 +95,17 @@ Python, and extensible via python modules.
    (GPLv3)
 
 .. image:: ../../../images/mavproxy_linux.jpg
-    :target:  http://ardupilot.github.io/MAVProxy/html/_images/mavproxy_linux.jpg
+    :target:  ../_images/mavproxy_linux.jpg
 
--  `Getting Started <http://ardupilot.github.io/MAVProxy/html/index.html>`__
+-   :ref:`Wiki <mavproxy:home>`
 -  `Issues List <https://github.com/ArduPilot/MAVProxy/issues>`__
 -  `Source Code <https://github.com/ArduPilot/MAVProxy>`__
 
 QGroundControl
 --------------
 
-QGroundControl work with MAVLink capable autopilots including ArduPilot.
-Its unique among the GCS offerings as it runs on all platforms desktop and mobile.
+QGroundControl works with MAVLink capable autopilots including ArduPilot.
+It's unique among the GCS offerings as it runs on all platforms desktop and mobile.
 
 -  **Platform**: Windows, Mac OS X, Linux, Android and iOS
 -  **Licence**: `Open Source <http://www.qgroundcontrol.org/license>`__

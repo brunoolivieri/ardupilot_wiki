@@ -5,9 +5,8 @@ Downloading and Analyzing Data Logs in Mission Planner
 ======================================================
 
 Dataflash logs are stored on the autopilot's onboard dataflash memory
-and can be download after a flight. On Plane and Rover dataflash logs are
-created soon after start-up. On Copter they are created after you first
-arm the copter. This topic explains how to configure and access
+and can be download after a flight. By default, they are created after you first
+arm the vehicle. This topic explains how to configure and access
 Dataflash logs.
 
 [copywiki destination="copter,plane,rover,dev,planner"]
@@ -21,6 +20,15 @@ Dataflash logs.
 .. note::
 
    If your vehicle is having trouble producing dataflash logs - including the infamous "No IO heartbeat" diagnostic message - try a different SD card.  You may also choose to test the card using a dedicated tool, such as ``H2testw``.  Low board voltages are also known to cause logging issues.
+   
+Logging Parameters
+==================
+
+Some commonly used parameters are:
+
+- :ref:`LOG_BITMASK<LOG_BITMASK>` : Bitmask for what items are logged. Noramlly, use default value, or "0" to disable logging.
+- :ref:`LOG_DISARMED<LOG_DISARMED>` : Setting to one will start logging when power is applied, rather than at the first arming of the vehicle. Usefull when debugging pre-arm failures.
+- :ref:`LOG_FILE_DSRMROT<LOG_FILE_DSRMROT>` : Setting this bit will force the creation of a new log file after disarming, waiting 15 seconds, and then re-arming. Normally, a log will be one file for every power cycle of the autopilot, beginning upon first arm.
 
 .. _common-downloading-and-analyzing-data-logs-in-mission-planner_downloading_logs_via_mavlink:
 
@@ -269,7 +277,7 @@ a mission):**
 | ThH     | Estimated throttle required to hover throttle in the range 0 ~ 1                                   |
 +---------+----------------------------------------------------------------------------------------------------+
 | DAlt    | The Desired Altitude while in AltHold, Loiter, RTL or Auto flight modes.                           |
-|         | It is influenced by EKF origin, which in 3.5.X is corrected by GPS altitude. This is behaviour is  |
+|         | It is influenced by EKF origin, which in 3.5.X is corrected by GPS altitude. This behaviour is     |
 |         | turned off in 3.6.X and can be turned on with EKF_OGN_HGT_MASK.                                    |
 +---------+----------------------------------------------------------------------------------------------------+
 | Alt     | The current EKF Altitude                                                                           |

@@ -1,7 +1,7 @@
 .. _making-a-mavlink-wifi-bridge-using-the-raspberry-pi:
 
 ===================================================
-Making a Mavlink WiFi bridge using the Raspberry Pi
+Making a MAVLink WiFi bridge using the Raspberry Pi
 ===================================================
 
 .. note::
@@ -67,7 +67,7 @@ You now have the Raspberry Pi ready to setup MavProxy and to set it up
 as an access point so you can use it to create a local WiFi network. To
 avoid having to continue using a keyboard and monitor it is convenient
 to connect to the RPi using an SSH client. You can follow the steps on
-the page :ref:`Connecting to RPi with an SSH/Telnet client <raspberry-pi-via-mavlink_connecting_to_rpi_with_an_sshtelnet_client>`
+the page `Connecting to RPi with an SSH/Telnet client <https://www.raspberrypi.org/documentation/remote-access/ssh/>`__
 in order to achieve this.
 
 Setting up the Raspberry Pi as an access point
@@ -521,12 +521,12 @@ Installing and configuring MavProxy
 
 With the RPi now working as an access point, we now need to configure it
 to connect to a drone. To accomplish this we will install
-`MavProxy <http://ardupilot.github.io/MAVProxy/html/index.html>`__, a
+:ref:`MAVProxy <mavproxy:home>`, a
 minimalist but full featured ground control station.
 
 .. tip::
 
-   The official instructions to `install MAVProxy on Linux are here <http://ardupilot.github.io/MAVProxy/html/getting_started/download_and_installation.html#linux>`__.
+   The official instructions to install MAVProxy on Linux are :ref:`here <mavproxy:mavproxy-downloadinstalllinux>`.
 
 First install some other modules that are needed. Type the following
 commands:
@@ -603,7 +603,7 @@ Testing the MavProxy Connection
 Now we are ready to test the communication. To do this follow the
 instructions on the section `"Testing the
 Connection" <raspberry-pi-via-mavlink/#Testing_the_connection>`__ in the
-Raspberry Pi via Mavlink page.
+Raspberry Pi via MAVLink page.
 
 
 .. _making-a-mavlink-wifi-bridge-using-the-raspberry-pi_configuring_mavproxy_to_always_run_and_listen_to_incoming_connections:

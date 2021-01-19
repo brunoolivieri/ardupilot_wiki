@@ -26,6 +26,7 @@ Parameters files are fetched from autotest using a Wget
 from __future__ import print_function, unicode_literals
 
 import argparse
+import errno
 import re
 import os
 from codecs import open
@@ -37,9 +38,12 @@ import filecmp
 import time
 import sys
 import hashlib
+from datetime import datetime
+import distutils
+from distutils import dir_util
 
 DEFAULT_COPY_WIKIS =['copter', 'plane', 'rover']
-ALL_WIKIS =['copter', 'plane', 'rover','antennatracker','dev','planner','planner2','ardupilot']
+ALL_WIKIS =['copter', 'plane', 'rover','antennatracker','dev','planner','planner2','ardupilot', 'mavproxy']
 COMMON_DIR='common'
 
 #GIT_REPO = ''
@@ -52,15 +56,19 @@ parser.add_argument('--clean', action='store_true', help="Does a very clean buil
 parser.add_argument('--cached-parameter-files', action='store_true', help="Do not re-download parameter files")
 parser.add_argument('--parallel', type=int, help="limit parallel builds, -1 for unlimited", default=1)
 parser.add_argument('--destdir', default="/var/sites/wiki/web", help="Destination directory for compiled docs")
+parser.add_argument('--enablebackups', action='store_true', default=False, help="Enable several backups up to const N_BACKUPS_RETAIN in --backupdestdir folder")
+parser.add_argument('--backupdestdir', default="/var/sites/wiki-backup/web", help="Destination directory for compiled docs")
 parser.add_argument('--paramversioning', action='store_true', default=False, help="Build multiple parameters pages for each vehicle based on its firmware repo.")
 parser.add_argument('--verbose', dest='verbose', action='store_false', default=True, help="show debugging output")
 args = parser.parse_args()
 #print(args.site)
 #print(args.clean)
 
-PARAMETER_SITE={'rover':'Rover', 'copter':'ArduCopter','plane':'ArduPlane','antennatracker':'AntennaTracker' }
+PARAMETER_SITE={'rover':'APMrover2', 'copter':'ArduCopter','plane':'ArduPlane','antennatracker':'AntennaTracker' }
 LOGMESSAGE_SITE={'rover':'Rover', 'copter':'Copter','plane':'Plane','antennatracker':'Tracker' }
 error_count = 0
+N_BACKUPS_RETAIN = 10
+
 
 def debug(str_to_print):
     """Debug output if verbose is set."""
@@ -135,6 +143,7 @@ def build_one(wiki):
     subprocess.check_call(["nice", "make", "clean"], cwd=wiki)
     subprocess.check_call(["nice", "make", "html"], cwd=wiki)
 
+
 def sphinx_make(site):
     """
     Calls 'make html' to build each site
@@ -143,6 +152,7 @@ def sphinx_make(site):
     wikis = set(ALL_WIKIS[:])
     num_procs = 0
     procs = []
+    global error_count
 
     while len(done) != len(wikis):
         wiki = list(wikis.difference(done))[0]
@@ -159,18 +169,24 @@ def sphinx_make(site):
                 if p.exitcode is not None:
                     p.join()
                     procs.remove(p)
+                    if p.exitcode != 0:
+                        error_count += 1
             time.sleep(0.1)
     while len(procs) > 0:
         for p in procs[:]:
             if p.exitcode is not None:
                 p.join()
                 procs.remove(p)
+                if p.exitcode != 0:
+                    error_count += 1
         time.sleep(0.1)
+
 
 def copy_build(site):
     """
     Copies each site into the target location
     """
+    global error_count
     for wiki in ALL_WIKIS:
         if site=='common':
             continue
@@ -178,19 +194,16 @@ def copy_build(site):
             continue
         print('copy: %s' % wiki)
         targetdir = os.path.join(args.destdir, wiki)
-        # copy target directory to "old" folder
+
+        print("DEBUG: Creating backup")
         olddir = os.path.join(args.destdir, 'old')
-        try:
-            subprocess.check_call(['mkdir', olddir])
-        except:
-            pass
-        #print('DEBUG: mv %s %s' % (targetdir,olddir) )
-        try:
-            subprocess.check_call(['mv', targetdir, olddir])
-            #print("DEBUG: Yes - moved to olddir")
-        except:
-            #print("DEBUG: No move to olddir")
-            pass
+        print('DEBUG: recreating %s' % olddir )
+        if os.path.exists(olddir):
+            shutil.rmtree(olddir)
+        os.mkdir(olddir)
+        if os.path.exists(targetdir):
+            print('DEBUG: moving %s into %s' % (targetdir,olddir) )
+            shutil.move(targetdir, olddir)
 
         # copy new dir to targetdir
         #print("DEBUG: targetdir: %s" % targetdir)
@@ -204,20 +217,73 @@ def copy_build(site):
             subprocess.check_call(['mv', sourcedir, html_moved_dir])
             #Rename move! (single move to html/* failed)
             subprocess.check_call(['mv', html_moved_dir ,targetdir])
-            print("DEBUG: Copied to good output location")
+            print("DEBUG: Moved to %s" % targetdir)
         except:
-            print("DEBUG: FAIL moving output to website location")
-            pass
+            print("DEBUG: FAIL moving output to %s" % targetdir)
+            error_count += 1
 
 
         # delete the old directory
-        print('DEBUG: rm -fi %s' % olddir )
-        try:
-            subprocess.check_call(["rm", "-rf", olddir])
-            print("Deleted olddir")
-        except:
-            #print("no delete of olddir")
-            pass
+        print('DEBUG: removing %s' % olddir )
+        shutil.rmtree(olddir)
+
+
+def copy_and_keep_build(site):
+    """
+    Copies each site into the target location and keep last "n" builds as backups
+    """
+    global error_count
+    for wiki in ALL_WIKIS:
+        if site=='common':
+            continue
+        if site is not None and site != wiki:
+            continue
+        debug('coping: %s' % wiki)
+        targetdir = os.path.join(args.destdir, wiki)
+        distutils.dir_util.mkpath(targetdir)
+
+        if os.path.exists(targetdir):
+            olddir = os.path.join(args.backupdestdir, str(building_time + '-wiki-bkp'), str(wiki) )
+            debug('Checking %s' % olddir )
+            distutils.dir_util.mkpath(olddir)
+            debug('Moving %s into %s' % (targetdir,olddir))
+            shutil.move(targetdir, olddir)
+
+            sourcedir = os.path.join(os.path.abspath(os.getcwd()), str(wiki), 'build', 'html')
+            html_moved_dir = os.path.join(args.destdir, 'html')
+            try:
+                #subprocess.check_call(['mv', sourcedir, html_moved_dir])
+                shutil.move(sourcedir, html_moved_dir)
+                # Rename move! (single move to html/* failed)
+                #subprocess.check_call(['mv', html_moved_dir ,targetdir])
+                shutil.move(html_moved_dir, targetdir)
+                debug("Moved to %s" % targetdir)
+            except:
+                error("FAIL moving output to %s" % targetdir)
+            finally:
+                debug("Creating a backup in %s" % olddir)
+                # subprocess.check_call(['cp', '-r', targetdir ,olddir])
+                distutils.dir_util.copy_tree(targetdir, olddir, preserve_symlinks=0)
+        else:
+            error("FAIL when looking for folder %s" % targetdir)
+
+
+def delete_old_wiki_backups(folder, n_to_keep):
+    try:
+        debug('Checking number of number of backups in folder %s' % folder)
+        backup_folders = glob.glob(folder  + "/*-wiki-bkp/")
+        backup_folders.sort()
+        if len(backup_folders) > n_to_keep:
+            for i in range(0, len(backup_folders) - n_to_keep):
+                if '-wiki-bkp' in str(backup_folders[i]):
+                    debug('Deleting folder %s' % str(backup_folders[i]))
+                    shutil.rmtree(str(backup_folders[i]))
+                else:
+                    debug('Ignoring folder %s because it does not look like a auto generated wiki backup folder' % str(backup_folders[i]))
+        else:
+            debug('No old backups to delete in %s' % folder)
+    except Exception as e:
+        error('Error on deleting some previous wiki backup folders: %s' % e)
 
 
 def generate_copy_dict(start_dir=COMMON_DIR):
@@ -278,6 +344,20 @@ def generate_copy_dict(start_dir=COMMON_DIR):
             elif file.endswith(".css"):
                 for wiki in ALL_WIKIS:
                     shutil.copy2(os.path.join(root, file), '%s/source/_static/' % wiki)
+            elif file.endswith(".js"):
+                source_file_path=os.path.join(root, file)
+                source_file = open(source_file_path, 'r', 'utf-8')
+                source_content=source_file.read()
+                source_file.close()
+                targets=get_copy_targets(source_content)
+                #print("JS: " + str(targets))
+                for wiki in targets:
+                    content = strip_content(source_content, wiki)
+                    targetfile='%s/source/_static/%s' % (wiki,file)
+                    print(targetfile)
+                    destination_file = open(targetfile, 'w', 'utf-8')
+                    destination_file.write(content)
+                    destination_file.close()
 
 
 def get_copy_targets(content):
@@ -383,6 +463,7 @@ def is_the_same_file(file1, file2):
             digests.append(a)
 
     return(digests[0] == digests[1])
+
 
 def fetch_versioned_parameters(site=args.site):
     """
@@ -547,6 +628,8 @@ def put_cached_parameters_files_in_sites(site=args.site):
 
 ###############################################################################################################
 
+now = datetime.now() 
+building_time = now.strftime("%Y-%m-%d-%H-%M-%S")
 
 if args.paramversioning:                
     fetch_versioned_parameters(args.site)   # Parameters for all versions availble on firmware.ardupilot.org    
@@ -562,6 +645,20 @@ if args.paramversioning:
     put_cached_parameters_files_in_sites(args.site)
     cache_parameters_files(args.site)
 
-copy_build(args.site)
+
+if args.enablebackups:                
+    copy_and_keep_build(args.site)
+    delete_old_wiki_backups(args.backupdestdir, N_BACKUPS_RETAIN)
+else:
+    copy_build(args.site)
+
+
+
 
 # To navigate locally and view versioning script for parameters working is necessary run Chrome as "chrome --allow-file-access-from-files". Otherwise it will appear empty locally and working once is on the server.
+
+if error_count > 0:
+    print("%u errors during Wiki build" % (error_count,))
+    sys.exit(1)
+
+sys.exit(0)

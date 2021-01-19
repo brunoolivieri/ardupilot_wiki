@@ -177,6 +177,7 @@ Getting more info
    First Time Setup <docs/initial-setup>
    First Flight <docs/flying-arducopter>
    If A Problem Arises <docs/common-when-problems-arise>
+   Flight Features <docs/copter-flight-features>
    Advanced Configuration <docs/common-advanced-configuration>
    Mission Planning <docs/common-mission-planning>
    Logs <docs/common-logs>
@@ -191,6 +192,8 @@ Getting more info
    Use-Cases and Applications <docs/common-use-cases-and-applications>
    Antenna Tracking <docs/common-antenna-tracking>
    Simulation <docs/common-simulation>
+   Upcoming Features <docs/common-master-features>
+   User Alerts <docs/common-user-alerts>
    Appendix <docs/common-appendix>
    Full Table of Contents <docs/common-table-of-contents>
 

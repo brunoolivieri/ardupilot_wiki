@@ -24,7 +24,7 @@ Specifications
 -  **Sensors**
 
    -  InvenSense MPU6000 IMU (accel, gyro) & ICM20602
-   -  BMP280 barometer
+   -  BMP280 barometer (later models use DPS310)
    -  Voltage & 132A current sensor
 
 
@@ -55,6 +55,19 @@ Specifications
    - 26g
 
 See mateksys.com for more `detailed specifications <http://www.mateksys.com/?portfolio=f765-wing#tab-id-2>`__ and `wiring diagrams <http://www.mateksys.com/?portfolio=f765-wing#tab-id-4>`__ (ArduPilot connections may vary slightly due to different UART useage).
+
+Camera and Supply Switch
+========================
+
+Switching between the two camera inputs, C1 (default on) or C2, and between on (default) and off of Vsw (5/9V selectable supply), can be implemented using the Relay function of ArduPilot and assigning the relays to an ``RCx_OPTION`` switch on the transmitter.
+
+Set the ``RELAYx_PIN`` to "81" for on/off of Vsw, and to "82" to control the camera switching.
+Then select an RC channel for control (Chx) and set its ``RCx_OPTION`` to the appropriate Relay (1-4) that you had set its pin parameter above.
+
+For example, use Channel 10 to control the camera switch using Relay 2:
+
+- :ref:`RELAY_PIN2<RELAY_PIN2>` = "82"
+- :ref:`RC10_OPTION<RC10_OPTION>` = "34" (Relay2 Control)
    
 Default UART order
 ==================
@@ -68,7 +81,7 @@ Default UART order
 - SERIAL6 = USER = UART4
 - SERIAL7 = USER = UART6 (TX only unless :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` = 1, then RX available also)
 
-RC input is configured on the R6 (UART6_RX) pin. It supports all RC protocols, however for FPort  :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` should be set to 1 and configured as described in :ref:`FPort<common-FPort-receivers>` section.
+RC input is configured on the R6 (UART6_RX) pin. It supports all RC protocols, however for FPort the receiver should be connected to T6 and SERIAL7 configured as described in :ref:`FPort<common-FPort-receivers>` section.
 
 Serial port protocols (Telem, GPS, etc.) can be adjusted to personal preferences.
 

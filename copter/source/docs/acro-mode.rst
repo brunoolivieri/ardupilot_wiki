@@ -4,9 +4,9 @@
 Acro Mode
 =========
 
-Acro mode (Rate mode) uses the RC sticks to control the angular velocity
-of the copter. Release the sticks and the vehicle will maintain its
-current attitude and will not return to level. Acro mode is useful for
+Acro mode uses the RC sticks to control the angular velocity
+of the copter in each axis. Release the sticks and the vehicle will maintain its
+current attitude and will not return to level (attitude hold). Acro mode is useful for
 aerobatics such as flips or rolls, or FPV when smooth and fast control
 is desired.
 
@@ -17,14 +17,14 @@ Overview
    of the vehicle. If the pilot puts the throttle completely down the
    motors will go to their minimum rate and stabilization will cease.However, this behavior
    can be changed by enabling :ref:`airmode` 
--  AC3.1 and higher include an Acro Trainer functionality that can be
+-  Copter includes an Acro Trainer functionality that can be
    turned on/off to make learning to fly Acro easier.
 -  Stick inputs are interpreted in the "body frame" (as opposed to Sport
    mode in which they are "earth frame"). The difference between "body
    frame" and "earth frame" is most obvious when the vehicle is leaned
    over. For example when pitched forward at 45 degrees, when left yaw
    is applied if using an earth frame controller (i.e. Sport mode) the
-   copter will maintain it's pitch and roll angles as it's heading
+   copter will maintain its pitch and roll angles as its heading
    changes. With a body frame controller like Acro it will rotate about
    the vehicle's vertical axis meaning the pitch angle will become the
    roll angle and the roll angle will become the pitch angle.
@@ -39,7 +39,7 @@ Overview
 .. youtube:: tC0mF-N5z0Q
     :width: 100%
 
-The above video was filmed with a Pixhawk running AC3.2 in ACRO mode
+The above video was filmed in ACRO mode
 using :ref:`FPV goggles <common-fpv-first-person-view>`.
 
 

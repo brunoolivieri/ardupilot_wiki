@@ -110,11 +110,11 @@ Testing the gimbal moves correctly
 
 **Testing the pilot's control of pitch**
 
-Once powered the gimbal should point to it's Tilt Angle Min (i.e.
-straight down) when your transmitter's channel 6 tuning knob is at it's
+Once powered the gimbal should point to its Tilt Angle Min (i.e.
+straight down) when your transmitter's channel 6 tuning knob is at its
 minimum pwm value (perhaps around 1000) and the camera should point to
-it's maximum tilt angle (i.e. straight forward) when the tuning knob is
-at it's maximum (perhaps around 2000). The mission planner's Radio
+its maximum tilt angle (i.e. straight forward) when the tuning knob is
+at its maximum (perhaps around 2000). The mission planner's Radio
 calibration page can be used to check the Ch6's current input pwm value.
 
 **Testing ROI**
@@ -123,6 +123,8 @@ calibration page can be used to check the Ch6's current input pwm value.
 
 .. image:: ../../../images/Tarot_BenchTestROI.jpg
     :target: ../_images/Tarot_BenchTestROI.jpg
+
+Pilot control of the gimbal can be restored by setting up an :ref:`auxiliary function switch <common-auxiliary-functions>` to "Retract Mount" (i.e. RCx_OPTION = 27) and then move the switch to the lower position.
 
 Updating the gimbal software
 ============================

@@ -7,10 +7,6 @@ SimpleBGC Gimbal (aka AlexMos gimbal)
 The SimpleBGC is a popular brushless gimbal controller that can communicate with ArduPilot (Copter, Plane, and Rover) using a custom serial protocol.
 More details on the capabilities of this gimbal can be found at `basecamelectronics.com <https://www.basecamelectronics.com/>`__
 
-.. note::
-
-   Support for this gimbal is included in Copter 3.4 (and higher). 
-
 Where to Buy
 ============
 
@@ -96,7 +92,7 @@ Testing the gimbal moves correctly
 
 **Testing the pilot's control of pitch**
 
-Once powered the gimbal should point to it's Tilt Angle Min (i.e. straight down) when your transmitter's channel 6 tuning knob is at its minimum PWM value (perhaps around 1000) and the camera should point to its maximum tilt angle (i.e. straight forward) when the tuning knob is at its maximum (perhaps around 2000). 
+Once powered the gimbal should point to its Tilt Angle Min (i.e. straight down) when your transmitter's channel 6 tuning knob is at its minimum PWM value (perhaps around 1000) and the camera should point to its maximum tilt angle (i.e. straight forward) when the tuning knob is at its maximum (perhaps around 2000).
 The Mission Planner Radio calibration page can be used to check the Ch6's current input PWM value.
 
 **Testing ROI**
@@ -109,3 +105,5 @@ This should cause the gimbal to point down at about 45 degrees.
 
 .. image:: ../../../images/Tarot_BenchTestROI.jpg
     :target: ../_images/Tarot_BenchTestROI.jpg
+
+Pilot control of the gimbal can be restored by setting up an :ref:`auxiliary function switch <common-auxiliary-functions>` to "Retract Mount" (i.e. RCx_OPTION = 27) and then move the switch to the lower position

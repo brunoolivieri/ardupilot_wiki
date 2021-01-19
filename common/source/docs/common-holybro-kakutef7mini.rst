@@ -11,7 +11,7 @@ Holybro Kakute F7 Mini
 
 .. note::
 
-   Support for this board is available with ArduPilot-4.0 (and higher)
+   Support for this board is available with ArduPilot-4.0 (and higher). Only the V1 adn V2 boards are supported. The V3 board changed microporcessor type and is no longer capable of running ArduPilot.
 
 .. note::
 
@@ -70,8 +70,8 @@ The UARTs are marked Rn and Tn in the above pinouts. The Rn pin is the receive p
 RC Input
 ========
  
-RC input is configured on the R6 (UART6_RX) pin. It supports all RC protocols, however for Fport  :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` should be set to 1 and configured as described in :ref:`FPort<common-FPort-receivers>` section.
- 
+RC input is configured on the R6 (UART6_RX) pin. It supports all RC protocols, however for FPort the receiver should be connected to T6 and SERIAL6 configured as described in :ref:`FPort<common-FPort-receivers>` section.
+
 FrSky Telemetry
 ===============
 
@@ -81,7 +81,7 @@ to set the following parameters to enable support for FrSky S.PORT.
   - :ref:`SERIAL6_PROTOCOL<SERIAL6_PROTOCOL>` 4 or 10
   - :ref:`SERIAL6_OPTIONS<SERIAL6_OPTIONS>` 7
 
-.. note:: FrSky Telemetry is supported on all UARTs, UART6 TX is suggested as it's RX input is already being used for RC input and avoids consuming another UART.
+.. note:: FrSky Telemetry is supported on all UARTs, UART6 TX is suggested as its RX input is already being used for RC input and avoids consuming another UART.
 
 
 OSD Support
@@ -105,17 +105,18 @@ Channels within the same group need to use the same output rate. If any channel 
 Battery Monitoring
 ==================
 
-The board has a built-in voltage and current sensor. The voltage
-sensor can handle up to 6S LiPo batteries.
+The board has a built-in voltage sensor. The voltage
+sensor can handle up to 6S LiPo batteries. An external current
+sensor can be attached to pin 4 on the ESC connector.
 
 The correct battery setting parameters are:
 
- - :ref:`BATT_MONITOR<BATT_MONITOR>` 4
+ - :ref:`BATT_MONITOR<BATT_MONITOR>` 4, if external sensor used; 3 for voltage only
  - :ref:`BATT_VOLT_PIN<BATT_VOLT_PIN>` 13
- - :ref:`BATT_CURR_PIN<BATT_CURR_PIN>` 12
- - :ref:`BATT_VOLT_MULT<BATT_VOLT_MULT>` 10.1
- - :ref:`BATT_AMP_PERVLT<BATT_AMP_PERVLT>` 17.0
-
+ - :ref:`BATT_CURR_PIN<BATT_CURR_PIN>` 12 , if external sensor used.
+ - :ref:`BATT_VOLT_MULT<BATT_VOLT_MULT>` 10.9
+ - :ref:`BATT_AMP_PERVLT<BATT_AMP_PERVLT>` should be set to match external current sensor, if used.
+ 
 Compass
 =======
 

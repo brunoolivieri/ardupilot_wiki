@@ -2,10 +2,10 @@
 
 
 ==============
-ADS-B Receiver
+ADS-B
 ==============
 
-This article describes how to attach and configure the MAVLink enabled `uAvionix ADS-B PING™ <https://uavionix.com/products/pingrx/>`__ sensor so that the pilot is aware of nearby manned aircraft and optionally to allow the vehicle to automatically avoid near misses.
+This article describes how to attach and configure an ADS-B module so that your aircraft can be aware of, and/or transmit to, other aircraft and air-traffic control nearby. This also allows the pilot on the ground to be aware of nearby manned aircraft and optionally to allow the vehicle to automatically avoid them.
 
    ..  youtube:: boe-25OI4bM
     :width: 100%
@@ -30,7 +30,6 @@ The uAvionix Ping sensor can be purchased directly from `uAvionix <https://uavio
    -  U.K.: `Unmanned Tech <http://www.unmannedtech.co.uk/>`__
    -  Germany: `UAV Store <http://www.uav-store.de/ads-b-receivers/>`__
    -  Asia: `jDrones pingRX <http://store.jdrones.com/ping_ads_b_receiver_p/adsbping01.htm>`__
-   -  Japan: `Japan Drones <http://japandrones.com/shopdetail/000000000124/004/X/page1/order/>`__
 
 The full reseller list can be found at `uAvionix <https://uavionix.com/resellers/>`__
 
@@ -49,7 +48,7 @@ vertically.
 Setup through the ground station
 ================================
 
-Set the :ref:`ADSB_ENABLE <ADSB_ENABLE>` parameter to "1" to enable receiving data from the ADSB sensor
+Set the :ref:`ADSB_TYPE <ADSB_TYPE>` parameter to "1" to enable receiving data from the Uavonix ADSB sensor.
 
 If you are using one of the UARTs on your board which defaults to MAVLink (i.e. Telem1, Telem2 on a Pixhawk) then the default settings will work fine for the PingRx. Alternatively you
 can connect the Ping to one of the other UARTs, such as the GPS UART (if it is unused) or the serial4/5 UART. In that case you will need to configure the UART as MAVLink at a baudrate of 57600.
@@ -80,18 +79,38 @@ station map.
 To test the system you can compare with flights shown on
 `flightradar24.com <https://www.flightradar24.com/>`__.
 
+ADSB-out configuration
+======================================
+
+.. warning::
+
+   Ensure you have the correct permissions to be using ADSB hardware that is capable of transmitting. You will be showing up on air-traffic controller airport radar!
+   
+The following parameters are used to configure ADS-B out:
+
+-  :ref:`ADSB_ICAO_ID <ADSB_ICAO_ID>` : ICAO_ID unique vehicle identification number of this aircraft. This is a integer limited to 24bits. If set to 0 then one will be randomly generated. If set to -1 then static information is not sent, transceiver is assumed pre-programmed.
+-  :ref:`ADSB_EMIT_TYPE <ADSB_EMIT_TYPE>` : ADSB classification for the type of vehicle emitting the transponder signal. Default value is 14 (UAV).
+-  :ref:`ADSB_LEN_WIDTH <ADSB_LEN_WIDTH>` : Aircraft length and width dimension options in Length and Width in meters. In most cases, use a value of 1 for smallest size.
+-  :ref:`ADSB_OFFSET_LAT <ADSB_OFFSET_LAT>` : GPS antenna lateral offset. This describes the physical location offest from center of the GPS antenna on the aircraft.
+-  :ref:`ADSB_OFFSET_LON <ADSB_OFFSET_LON>` : GPS antenna longitudinal offset. This is usually set to 1, Applied By Sensor
+-  :ref:`ADSB_RF_SELECT <ADSB_RF_SELECT>` : Transceiver RF selection for Rx enable and/or Tx enable. This only effects devices that can Tx and/or Rx. Rx-only devices override this to always be Rx-only.
+-  :ref:`ADSB_SQUAWK <ADSB_SQUAWK>` : Squawk/Transponder (Mode 3/A) code that is braodcasted to ATC that is usually assigned by your ATC for a given flight. In the USA/Canada the default squawk code is for VFR which is 1200. Most parts of Europe and Australia use 7000. If an invalid octal number is set then it will be reset to 1200.
+
+In many cases the defaults are OK and you don't need to change any of these except `ADSB_RF_SELECT <ADSB_RF_SELECT>` which is needed to turn on the transmitter. The ADSB_RF_SELECT transmit bit is cleared on boot to ensure you're only trsnamitting when intentionally enabled.
+There are additional MAVLink messages for ADSB in uavionix.xml to allow a GCS to set all of these options. Namely, msg UAVIONIX_ADSB_OUT_CFG and UAVIONIX_ADSB_OUT_DYNAMIC where the _cfg is the only place where you can assign a custom callsign.
+
 Enabling Manned Vehicle Avoidance
 =================================
 
-Copter-3.4 (and higher) and very recent versions of Plane include a new flight mode AVOID_ADSB that attempts to avoid manned vehicles based on the ADS-B sensor's output. Entry into this mode is automatic when avoidance is necessary based on the parameters below. Exit is also automatic when the threat has passed.
+ArduPilot includes a flight mode, AVOID_ADSB, that attempts to avoid manned vehicles based on the ADS-B sensor's output. Entry into this mode is automatic when avoidance is necessary based on the parameters below. Exit is also automatic when the threat has passed.
 
 To enable this feature connect with a Ground Station and set the following parameters:
 
 -  :ref:`AVD_ENABLE <AVD_ENABLE>` : set to "1" to enable ADS-B based avoidance (param refresh may be necessary after setting this)
--  ``AVD_F_DIST_XY`` : the horizontal distance in meters that should be considered a near-miss
+-  :ref:`AVD_F_DIST_XY <AVD_F_DIST_XY>` : the horizontal distance in meters that should be considered a near-miss
 -  :ref:`AVD_F_DIST_Z <AVD_F_DIST_Z>` : the vertical distance in meters above or below the vehicle that should be considered a near-miss
 -  :ref:`AVD_F_TIME <AVD_F_TIME>` : how many seconds in advance of a projected near-miss (based on the vehicle's current position and velocity) the vehicle should begin the ``AVD_F_ACTION``.
--  ``AVD_F_ACTION`` : controls how the vehicle should respond to a projected near-miss (i.e. 2:Climb Or Descend, 3:Move Horizontally, 4:Move Perpendicularly in 3D, 5:RTL or 6:Hover)
+-  :ref:`AVD_F_ACTION <AVD_F_ACTION>` : controls how the vehicle should respond to a projected near-miss (i.e. 2:Climb Or Descend, 3:Move Horizontally, 4:Move Perpendicularly in 3D, 5:RTL or 6:Hover)
 -  :ref:`AVD_F_RCVRY <AVD_F_RCVRY>` : sets how the vehicle will behave after the vehicle has cleared the near-miss area (i.e. 1 = resume previous flight mode)
 
 Note: there are equivalent "Warn" parameters (i.e. AVD_W_DIST_XY) that can be used to adjust when warnings to the pilot will appear on the ground station.
@@ -104,21 +123,6 @@ In ArduPilot firmware versions 4.0 and later, the entry into this mode can be en
 
    ..  youtube:: quomxCIPP74
     :width: 100%
-
-
-Older version of ADS-B based avoidance in Plane-3.5
-===================================================
-
-Plane's earlier version of ADS-B based avoidance used these different parameters:
-
--  ADSB_BEHAVIOR=0, NONE. Objects are detected and the GCS is notified but no action is taken.
--  ADSB_BEHAVIOR=1, LOITER. If another vehicle is nearby, switch from AUTO to LOITER mode. When the vehicle leaves, switch back to AUTO and resume.
--  ADSB_BEHAVIOR=2, LOITER_AND_DESCEND. Same as (1) but decrease the altitude 1 m/s. If the other vehicle location persists, you will eventually loiter into the ground.
-
-The older behavior was to check the detected vehicle list once per second
-and determine if any other aircraft were within 200m. The altitude was
-ignored. At that point, a behavior is performed in an effort to avoid
-it. The behavior persists until no vehicles are within 400m.
 
 Vehicle Database
 ================

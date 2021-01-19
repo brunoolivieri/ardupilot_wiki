@@ -25,9 +25,9 @@ Copter/Plane/Rover support a number of different rangefinders including Lidars (
    will be used until you exceed ``RNGFNDx_MAX_CM``, after that it switches to
    the barometer.
 
-   Copter-3.4 (and higher) includes support for :ref:`Terrain Following <terrain-following>` in Auto mode.
+   Copter includes support for :ref:`Terrain Following <terrain-following>` in Auto mode.
 
-   Copter-3.5 (and higher) and Rover-3.5 (and higher) can use rangefinders for :ref:`Object Avoidance <common-object-avoidance-landing-page>`.
+   Copter can also use rangefinders for :ref:`Object Avoidance <common-object-avoidance-landing-page>`.
 [/site]
 
    
@@ -53,24 +53,28 @@ based upon your set-up.
 
     Aerotenna US-D1 Radar Altimeter <common-aerotenna-usd1>
     Attollo Engineering Wasp200 <common-wasp200-lidar>
+    Avionics Anonymous UAVCAN LIDAR Interface <common-avanon-laserint>
     Benewake TF02 / TF03 <common-benewake-tf02-lidar>
-    Benewake TFmini / TFmini Plus <common-benewake-tfmini-lidar>
+    Benewake TFmini / TFmini Plus / TF-Luna <common-benewake-tfmini-lidar>
     Garman Lidar-Lite <common-rangefinder-lidarlite>
+    GY-US42 Sonar <common-rangefinder-gy-us42>
+    HC-SR04 Sonar <common-rangefinder-hcsr04>
+[site wiki="copter,rover"]
+    Intel Realsense Depth Camera <common-realsense-depth-camera>
+[/site]
     LeddarTech Leddar One <common-leddar-one-lidar>
     LeddarTech LeddarVu8 <common-leddartech-leddarvu8-lidar>
-    LightWare SF20 / LW20 Lidar <common-lightware-lw20-lidar>
     LightWare SF10 / SF11 Lidar <common-lightware-sf10-lidar>
+    LightWare SF20 / LW20 Lidar <common-lightware-lw20-lidar>
     Lightware SF02 Lidar <common-rangefinder-sf02>
-    Lightware SF40c (360 degree) <common-lightware-sf40c-objectavoidance>
+    Lightware SF40/C (360 degree) <common-lightware-sf40c-objectavoidance>
     Maxbotix I2C Sonar <common-rangefinder-maxbotixi2c>
     Maxbotix Analog Sonar <common-rangefinder-maxbotix-analog>
     RPLidar A2 360 degree laser scanner <common-rplidar-a2>
     ST VL53L0X / VL53L1X Lidar <common-vl53l0x-lidar>
-    TeraRanger One Rangefinder <common-teraranger-one-rangefinder>
+    TeraRanger One/EVO Rangefinders <common-teraranger-one-rangefinder>
     TerraRanger Tower (360 degree) <common-teraranger-tower-objectavoidance>
     Underwater Sonar <common-underwater-sonars-landingpage>
 
-[site wiki="copter"]
-    Analog Sonar (AC3.1) <sonar>
-[/site]
+
 

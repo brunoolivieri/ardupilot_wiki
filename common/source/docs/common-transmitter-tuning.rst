@@ -82,6 +82,8 @@ individual tunable parameters whereas values of 101 or higher
 correspond to sets of related parameters that can be tuned one after
 the other in a flight.
 
+.. note:: Most of the tuneable parameters apply to the VTOL operation of QuadPlanes. Only :ref:`TUNE_PARAM<TUNE_PARAM>` values in the 50-57 range are for fixed wing operation.
+
 Use your ground stations parameter interface to see see the full list
 of tunable parameters and parameter sets available for :ref:`TUNE_PARAM<TUNE_PARAM>` . For
 Plane most of the parameters are associated with tuning the
@@ -146,12 +148,12 @@ You can tune multiple parameters in one flight by setting :ref:`TUNE_PARAM<TUNE_
 one of the "tuning set" parameters. For example, if you set :ref:`TUNE_PARAM<TUNE_PARAM>`
 to 101 then you will have 4 different stages to your tune:
 
-- ``RATE_RLL_D``
-- ``RATE_RLL_PI``
-- ``RATE_PITCH_D``
-- ``RATE_PITCH_PI``
+- ``Roll: Rate D``
+- ``Roll: Rate P and Rate I``
+- ``Pitch: Rate D``
+- ``Pitch: Rate P and Rate I``
 
-notice that ``RATE_RLL_PI`` is actually two parameters in one, controlling
+notice that ``Roll: Rate P and Rate I`` is actually two parameters in one, controlling
 both the P gain and the I gain for roll. This follows the normal
 advice for MultiCopters that you should keep the P and I values equal
 when doing a manual tune.
@@ -177,12 +179,12 @@ set.
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
 +:ref:`TUNE_PARAM<TUNE_PARAM>`+  Set Name         +       Params Tuned                                                                                                  +
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
-+    101                      + Set_RateRollPitch +     :ref:`Q_A_RAT_RLL_D<Q_A_RAT_RLL_D>`/:ref:`Q_A_RAT_RLL_PI<Q_A_RAT_RLL_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_RLL_I>`/ +
-+                             +                   +     :ref:`Q_A_RAT_PIT_D<Q_A_RAT_PIT_D>`/:ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_PIT_I>`   +
++    101                      + Set_RateRollPitch +     :ref:`Q_A_RAT_RLL_D<Q_A_RAT_RLL_D>`/:ref:`Q_A_RAT_RLL_P<Q_A_RAT_RLL_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_RLL_I>`/  +
++                             +                   +     :ref:`Q_A_RAT_PIT_D<Q_A_RAT_PIT_D>`/:ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>` & :ref:`Q_A_RAT_PIT_I<Q_A_RAT_PIT_I>`   +
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
-+    102                      + Set_RateRoll      +     :ref:`Q_A_RAT_RLL_D<Q_A_RAT_RLL_D>` / :ref:`Q_A_RAT_RLL_PI<Q_A_RAT_RLL_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_RLL_I>`+
++    102                      + Set_RateRoll      +     :ref:`Q_A_RAT_RLL_D<Q_A_RAT_RLL_D>` / :ref:`Q_A_RAT_RLL_P<Q_A_RAT_RLL_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_RLL_I>` +
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
-+    103                      + Set_RatePitch     +     :ref:`Q_A_RAT_PIT_D<Q_A_RAT_PIT_D>` / :ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>` & :ref:`Q_A_RAT_RLL_I<Q_A_RAT_PIT_I>` +
++    103                      + Set_RatePitch     +     :ref:`Q_A_RAT_PIT_D<Q_A_RAT_PIT_D>` / :ref:`Q_A_RAT_PIT_P<Q_A_RAT_PIT_P>` & :ref:`Q_A_RAT_PIT_I<Q_A_RAT_PIT_I>` +
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
 +    104                      + Set_RateYaw       +     :ref:`Q_A_RAT_YAW_P<Q_A_RAT_YAW_P>` / :ref:`Q_A_RAT_YAW_I<Q_A_RAT_YAW_I>` / :ref:`Q_A_RAT_YAW_D<Q_A_RAT_YAW_D>` +
 +-----------------------------+-------------------+---------------------------------------------------------------------------------------------------------------------+
@@ -364,7 +366,7 @@ The :ref:`TUNE_MAX<TUNE_MAX>` parameter determines the maximum value of the para
 +--------+-------------------------+----------------------------------------------------------------------+
 |54      |Rate Yaw FF              | :ref:`ATC_RAT_YAW_FF<ATC_RAT_YAW_FF>` (heli only)                    |
 +--------+-------------------------+----------------------------------------------------------------------+
-|57      |Winch                    | :ref:`WINCH__RATE_MAX<WINCH__RATE_MAX>`                              |
+|57      |Winch                    | :ref:`WINCH_RATE_MAX<WINCH_RATE_MAX>`                                |
 +--------+-------------------------+----------------------------------------------------------------------+
 |58      |SysID Magnitude          | :ref:`SIDS_MAGNITUDE<SID_MAGNITUDE>`                                 |
 +--------+-------------------------+----------------------------------------------------------------------+

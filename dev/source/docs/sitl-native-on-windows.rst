@@ -6,7 +6,7 @@ Setting up SITL on Windows
 
 SITL was originally developed on Linux, but can also be built and run *natively* Windows. It can also be run on a virtual machine (Linux) hosted on Windows, Mac OSX, or Linux.
 
-This article shows how to build and run :ref:`SITL (Software In The Loop) <sitl-simulator-software-in-the-loop>` *natively* on Windows using Cygwin. These commands were tested on Windows 10 with `MAVProxy 1.5.0 <http://ardupilot.github.io/MAVProxy/>`__ and Copter-4.0.0-dev.
+This article shows how to build and run :ref:`SITL (Software In The Loop) <sitl-simulator-software-in-the-loop>` *natively* on Windows using Cygwin. These commands were tested on Windows 10 with :ref:`MAVProxy <mavproxy:home>` and Copter-4.0.0-dev.
 
 .. figure:: ../images/MAVProxy_Map_GuidedCopter.jpg
    :target: ../_images/MAVProxy_Map_GuidedCopter.jpg
@@ -22,7 +22,7 @@ Installation steps
 
 .. tip::
 
-   Makes sure that Cygwin is in your PATH. As for troubleshooting, you may add a Windows environment variable called CYGWIN_HOME in your path pointing to your c:\cygwin\bin (if you installed at "C:"). You may check it by doing a Right-click on "My Computer" -> Properties -> Advanced -> Environment Variables.
+   Make sure that Cygwin is in your PATH. As for troubleshooting, you may add a Windows environment variable called CYGWIN_HOME in your path pointing to your c:\cygwin\bin (if you installed at "C:"). You may check it by doing a Right-click on "My Computer" -> Properties -> Advanced -> Environment Variables.
 
 Running SITL
 ============
@@ -298,7 +298,7 @@ SITL and MAVProxy can do a whole lot more than shown here, including
 manually guiding the vehicle, and creating and running missions. To find
 out more:
 
--  Read the `MAVProxy documentation <http://ardupilot.github.io/MAVProxy/>`__.
+-  Read the :ref:`MAVProxy documentation <mavproxy:home>`.
 -  See :ref:`Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>` for guidance on flying and testing with SITL.
 
 Troubleshooting

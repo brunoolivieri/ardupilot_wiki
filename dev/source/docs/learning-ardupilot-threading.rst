@@ -50,7 +50,7 @@ function as a callback argument (bundling up the object context with the
 function pointer).
 
 When a piece of code wants something to happen at less than 1kHz then it
-should maintain it's own "last_called" variable and return immediately
+should maintain its own "last_called" variable and return immediately
 if not enough time has passed. You can use the hal.scheduler->millis()
 and hal.scheduler->micros() functions to get the time since boot in
 milliseconds and microseconds to support this.
@@ -79,8 +79,8 @@ what threads are created and what the realtime priority of each thread
 is.
 
 If you have a Pixhawk then you should also now setup a debug console
-cable and attach to the nsh console (the serial5 port). Connect at
-57600. When you have connected, try the "ps" command ad you will get
+cable and attach it to the nsh console (the serial5 port). Connect at
+57600. When you have connected, try the "ps" command and you will get
 something like this:
 
 ::
@@ -306,7 +306,7 @@ is called every 50 times (ie. once a second) and the
 five_second_call() is called every 250 times (ie. once every 5
 seconds).
 
-The third number is the maximum time that the function is expected to
+The second number is the maximum time that the function is expected to
 take. This is used to avoid making the call unless there is enough time
 left in this scheduling run to run the function. When scheduler.run() is
 called it is passed the amount of time (in microseconds) available for

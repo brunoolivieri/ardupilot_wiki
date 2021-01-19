@@ -21,7 +21,7 @@ GPS is mandatory in all vehicles. Compass is mandatory for Copter and Rover and 
 
 .. note:: Usually GPS is attached to the logical Serial Port 3 by default in ArduPilot. However, which  physical UART is assigned to ArduPilot's Serial Port 3 on the autopilot is documented in the autopilots :ref:`documentation <common-autopilots>`
 
-As an wiring example, the topic :ref:`3DR UBlox GPS + Compass Module <common-installing-3dr-ublox-gps-compass-module_connecting_to_pixhawk>` shows how to connect to a Pixhawk autopilot and includes additional configuration and mounting information.
+As an wiring example, the topic :ref:`3DR UBlox GPS + Compass Module <common-installing-3dr-ublox-gps-compass-module>` shows how to connect to a Pixhawk autopilot and includes additional configuration and mounting information.
 
 RC input
 --------
@@ -36,20 +36,20 @@ Ardupilot autodetects the following serial RC receiver protocols:
 
    #. PPM remote control (R/C) receivers
    #. SBus receivers
-   #. FPort receivers
+   #. FPort receivers (see :ref:`common-FPort-receivers` )
    #. Spektrum DSM and DSM2 receivers
    #. Spektrum DSM-X Satellite receivers
    #. IBUS receivers
    #. MULTIPLEX SRXL version 1 and version 2 receivers.
 
 For traditional single-wire-per-channel (PWM) receivers a PPM encoder
-can be used to convert the receiver outputs to PPM-SUM. 
+can be used to convert the receiver outputs to PPM. 
 
-.. tip:: As of Ardupilot 4.0 versions of firmware, any autopilot UART may be used as an input for an RC receiver, instead of the designated RCin or SBUS input pin, by setting that port's ``SERIALx_PROTOCOL`` to 23. However, some serial protocols require inversion (SBUS) and the UART must be capable of using the ``SERIALx_OPTIONS`` parameter to invert the RX input, otherwise, an external inverter will be required. This also allows a second RC receiver to be attached to the autopilot for redundancy. If the first receiver (first detected valid after boot) fails, then the second will be used. Note that whatever RC input ranges and trims were calibrated will be used for the second when it becomes active. Both receivers MUST be set to send no pulses in failsafe for this to work properly.
+.. tip:: As of Ardupilot 4.0 versions of firmware, any autopilot UART may be used as an input for an RC receiver, instead of the designated RCin or SBUS input pin, by setting that port's ``SERIALx_PROTOCOL`` to 23. However, some serial protocols require inversion (SBUS,FPort) and the UART must be capable of using the ``SERIALx_OPTIONS`` parameter to invert the RX input, otherwise, an external inverter will be required. This also allows a second RC receiver to be attached to the autopilot for redundancy. If the first receiver (first detected valid after boot) fails, then the second will be used. Note that whatever RC input ranges and trims were calibrated will be used for the second when it becomes active. Both receivers MUST be set to send no pulses in failsafe for this to work properly.
 
 .. tip::
 
-   Information about compatible receivers and how they are connected can be found in :ref:`Compatible RC Transmitter and Receiver Systems <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>`. Also see :ref:`common-multiple-rx` for use of multiple RC receivers
+   Information about compatible receivers and how they are connected can be found in :ref:`common-rc-systems`. Also see :ref:`common-multiple-rx` for use of multiple RC receivers
 
 .. figure:: ../../../images/FRSkyTaranis.jpg
    :target: ../_images/FRSkyTaranis.jpg
@@ -150,7 +150,7 @@ Related information
     Autopilot I/O <common-flight-controller-io>
     Wiring Example using Pixhawk <common-pixhawk-wiring-and-quick-start>
     Powering the Pixhawk <common-powering-the-pixhawk>
-    Compatible RC Tx/Rx Systems <common-pixhawk-and-px4-compatible-rc-transmitter-and-receiver-systems>
+    Compatible RC Tx/Rx Systems <common-rc-systems>
 
 [site wiki="copter"]
     Advanced Pixhawk Quadcopter Wiring Chart <advanced-pixhawk-quadcopter-wiring-chart>

@@ -91,7 +91,7 @@ Step #2 - Start the VM for the first time
 Step #3 - Setting up shared partition with Windows & Ubuntu Virtual Machine
 ===========================================================================
 
-1. Ensure the VM is powered down by select it's name, then select the
+1. Ensure the VM is powered down by selecting its name, then select the
 drop-down beside the green play button and select "Power Off" if it's
 not greyed
 
@@ -199,7 +199,7 @@ file extension to ".log" before opening in Mission Planner.
 Next steps
 ==========
 
-To get the most out of SITL we recommend you `Learn MavProxy <http://ardupilot.github.io/MAVProxy/>`__.
+To get the most out of SITL we recommend you read the :ref:`MAVProxy documentation <mavproxy:home>`.
 
 The topic :ref:`Using SITL for ArduPilot Testing <using-sitl-for-ardupilot-testing>` explains how to use the
 simulator, and covers topics like how to use SITL with Ground Stations

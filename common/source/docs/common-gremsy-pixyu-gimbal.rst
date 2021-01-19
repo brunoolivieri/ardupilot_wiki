@@ -46,21 +46,26 @@ To control the gimbal's lean angles from a transmitter set:
 - :ref:`MNT_RC_IN_ROLL <MNT_RC_IN_ROLL>` to some input channel number to control the gimbal's roll angle
 - :ref:`MNT_RC_IN_PAN <MNT_RC_IN_PAN>` to some input channel number to control the gimbals' heading
 
-For reference, `Gremsy's setup instructions can be found here <https://support.gremsy.com/support/solutions/articles/36000189926-how-to-setup-gremsy-gimbal-with-pixhawk-cube>`__
+Gremsy's instructions can be found below:
+
+- `How to setup Gremsy gimbal with Pixhawk Cube <https://support.gremsy.com/support/solutions/articles/36000189926-how-to-setup-gremsy-gimbal-with-pixhawk-cube>`__
+- `Control Gremsy Gimbal with Herelink & Cube <https://support.gremsy.com/support/solutions/articles/36000222529-control-gremsy-gimbal-with-herelink-cube-pilot>`__
 
 Configuring the Gimbal
 ----------------------
 
 The gimbal should work without any additional configuration but to improve performance you may need to adjust the gimbal's gains to match the camera's weight
 
-- Download, install and run the `gTune setup application <https://github.com/Gremsy/gTuneDesktop/releases>`__)
+- Download, install and run the `gTune setup application <https://github.com/Gremsy/gTuneDesktop/releases>`__
 - Connect the gimbal to your Desktop PC using a USB cable
 - Push the "CONNECTION" button on the left side of the window, then select the COM port and press "Connect"
+- Select the "CONTROLS" tab and ensure "SYNC" is selected so the gimbal communicates with the autopilot using MAVLink
 - Select the "STIFFNESS" tab and adjust the Tilt, Roll and Pan gains so that the gimbal holds the camera in position without shaking
 
 Testing Controlling the Gimbal from RC
 --------------------------------------
 
+- Disconnect the USB cable connecting your PC to the gimbal
 - Powerup the vehicle and gimbal
 - Move the transmitter's channel 6 tuning knob to its minimum position, the camera should point straight down
 - Move the ch6 knob to maximum and the gimbal should point upwards
@@ -79,3 +84,5 @@ The ROI feature points the vehicle and/or camera to point at a target.  This can
 
 .. image:: ../../../images/Tarot_BenchTestROI.jpg
     :target: ../_images/Tarot_BenchTestROI.jpg
+
+Pilot control of the gimbal can be restored by setting up an :ref:`auxiliary function switch <common-auxiliary-functions>` to "Retract Mount" (i.e. RCx_OPTION = 27) and then move the switch to the lower position

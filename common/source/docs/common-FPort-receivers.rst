@@ -4,32 +4,29 @@
 FPort Receivers
 ===============
 
-Support for FPort will be in firmware revs 4.1 and later.
+Support for FPort/FPort2 will be in firmware revs 4.1 and later.
 
 FPort protocol combines SBus RC control information being sent to the autopilot with bi-directional telemetry information to/from the autopilot on a single wire high baud rate bus.
 
 Many FRSky X series and R series receivers have this capability, either natively or with firmware upgrade.
 
-Connection to the autopilot and configuration varies from autopilot to autopilot since their UART capabilities vary. Most F4 cpu based autopilots do not have controllable inverters in front of the UART TX and RX, and require either an external bi-directional inverter, as SPort connections do (see :ref:`frsky_cables` ), or the use of the "uninverted FPort pad/pin" some receivers provide since the FPort protocol has opposite signaling levels than normal UART operation.
-Most F7 and H7 autopilots, on the other hand, have internal inverters, and can be directly connected from the receiver's FPort to their UARTs TX input line, as shown below:
+Connection to the autopilot and configuration varies from autopilot to autopilot since their UART capabilities vary. Most F4 cpu based autopilots do not have controllable inverters in front of the UART TX and RX, and require either an external bi-directional inverter, as SPort connections do or the use of the "uninverted FPort pad/pin" some receivers provide since the FPort protocol has opposite signaling levels than normal UART operation.
+Most F7 and H7 autopilots, on the other hand, have internal inverters, and can be directly connected from the receiver's FPort to their UARTs TX input line.
 
-Connections
-===========
+.. note:: ArduPilot supports both 16 and 24 channels FPort2 but telemetry is enabled only for 16 channels mode.
 
-.. image:: ../../../images/FPort-wiring-a.jpg
-    :target: ../_images/FPort-wiring-a.jpg
+Telemetry protocol
+==================
 
-.. image:: ../../../images/FPort-wiring-b.jpg
-    :target: ../_images/FPort-wiring-b.jpg
+ArduPilot will send telemetry data to the receiver over Fport using the :ref:`Passthrough telemetry <common-frsky-passthrough>` protocol. To get sensors to show up in OpenTX you have to install and enable a script which can display Passthrough telemetry, such as  :ref:`Yaapu FrSky Telemetry Script for OpenTX<common-frsky-yaapu>`. Otherwise the only sensor that will be discovered would be GPS.
 
-.. image:: ../../../images/FPort-wiring-c.jpg
-    :target: ../_images/FPort-wiring-c.jpg
+Connection Diagrams
+===================
 
+See :ref:`common-connecting-sport-fport` for connection diagrams.
 
-.. note:: some boards can have the FPort connected to the UARTs RX pin instead of TX pin as shown above. See below:
-
-Configuration
-=============
+ArduPilot Configuration
+=======================
 
 Configuration depends on the autopilot and connection method.
 
@@ -72,20 +69,22 @@ Enhanced Configurations
 
 Since many autopilots have a UART tied to the normal RC input pin for that autopilot which has been disabled, partially or totally, to allow that pins use as a GPIO for RC protocol decodes, including the PWM based ones, several boards now have alternate pin assignment which can be selected with the :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` parameter. This allows the use of those previously disabled UARTs for FPort, without consuming an additional UART.
 
+.. note:: The Pixhawk family of controllers (ie Pixhawkx, Cube, etc.) that use an IOMCU co-processor do not have alternate configurations allowing the use of the RCIN pin. A serial port must be used, as described above.
+
 .. note:: CUAVv5Nano can use its normal RCinput for FPort. Setup configuration for SERIAL5 for a normal F7/H7 autopilot, as above.
 
 The following autopilots have this capability using :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>` =1 :
 
 MatekF405
 --------------------------
-UART2 RX can now be tied to receiver FPort through external SPort/FPort bi-directional inverter or by using "inverted FPort" output from receiver, if available.
+UART2 RX/TX can now be tied to receiver FPort through external SPort/FPort bi-directional inverter.
 
 - Configure SERIAL5 as above for F4 autopilots
 
 
 MatekF405-Wing
 --------------
-UART2 RX can now be tied to receiver FPort through external SPort/FPort bi-directional inverter or by using "inverted FPort" output from receiver, if available.
+UART2 RX/TX can now be tied to receiver FPort through external SPort/FPort bi-directional inverter.
 
 - Configure SERIAL7 as above for F4 autopilots
 
@@ -96,7 +95,7 @@ UART6 RX can now be tied to receiver FPort. This board requires a unique configu
 - :ref:`BRD_ALT_CONFIG<BRD_ALT_CONFIG>`  =1
 - :ref:`SERIAL7_PROTOCOL<SERIAL7_PROTOCOL>` =23
 - :ref:`SERIAL7_OPTIONS<SERIAL7_OPTIONS>` =15
-- :ref:`RC_OPTIONS<RC_OPTIONS>` =8
+- :ref:`RC_OPTIONS<RC_OPTIONS>` =8 (depending on receiver and its firmware rev, this may not be necessary)
 - :ref:`RSSI_TYPE<RSSI_TYPE>` =3
 
 KakuteF7 and KakuteF7Mini
@@ -107,4 +106,3 @@ The normal RC input, UART6 RX, can now be used for FPort with the following conf
 - :ref:`SERIAL6_PROTOCOL<SERIAL6_PROTOCOL>` =23
 - :ref:`SERIAL6_OPTIONS<SERIAL6_OPTIONS>` =15
 - :ref:`RSSI_TYPE<RSSI_TYPE>` =3
-

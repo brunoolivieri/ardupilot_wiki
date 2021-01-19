@@ -11,10 +11,6 @@ These instructions focus on the setup using Mission Planner on Windows, but HERE
 .. image:: ../../../images/here-plus-gps.png
 	:target: ../_images/here-plus-gps.png
 
-.. note::
-
-     Here+ RTK GPS is supported in Copter-3.5 (and higher), Plane 3.8.0 (and higher)
-
 Where to buy
 ============
 
@@ -27,7 +23,7 @@ The Here+ GPS kit comes with a larger round GPS (also knows as the "Rover") that
 
 This GPS is connected to the autopilot using the supplied 8-pin clickmate connector (if using a Cube) or an optional 4pin+6pin DF13 connector (if using Pixhawk).
 
-A smaller GPS (also known as the "base station") labelled "here+" is also included along with it's external antenna.  This GPS is connected to the ground station PC using the supplied USB cable.
+A smaller GPS (also known as the "base station") labelled "here+" is also included along with its external antenna.  This GPS is connected to the ground station PC using the supplied USB cable.
 
 Below is a diagram showing how to connect the Here+ to a Pixhawk.
 

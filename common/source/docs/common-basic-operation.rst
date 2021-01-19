@@ -17,11 +17,11 @@ The basic goal of the software is to provide control of the vehicle, either auto
 Inputs
 ------
 
-Control inputs are input either by radio control receiver, or via Mavlink communication from telemetry or companion computers. The radio control receiver provides Roll/Pitch/Yaw inputs for desired attitude control, vehicle power (throttle), as well as control of operational modes and auxiliary functions. The radio control inputs for Roll/Pitch/Yaw/Throttle can be assigned to any radio control channel via the ``RCMAP_x`` functions. Auxiliary functions are assigned using the ``RCx_FUNCTION`` parameters.
+Control inputs are input either by radio control receiver, or via MAVLink communication from telemetry or companion computers. The radio control receiver provides Roll/Pitch/Yaw inputs for desired attitude control, vehicle power (throttle), as well as control of operational modes and auxiliary functions. The radio control inputs for Roll/Pitch/Yaw/Throttle can be assigned to any radio control channel via the ``RCMAP_x`` functions. Auxiliary functions are assigned using the ``RCx_FUNCTION`` parameters.
 
 Outputs
 -------
-Outputs are provided to activate servos, motors, relays, etc. to control the vehicle. Any autopilot output can be assigned the desired vehicle control output function via the SERVOx_FUNCTION parameters.
+Outputs are provided to activate servos, motors, relays, etc. to control the vehicle. Any autopilot output can be assigned the desired vehicle control output function via the ``SERVOx_FUNCTION`` parameters. Note that outputs do NOT necessarily correspond to any RC input, unless their function is set to RCPassThru.
 
 Sensors
 -------

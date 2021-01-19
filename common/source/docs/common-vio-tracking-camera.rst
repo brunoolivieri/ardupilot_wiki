@@ -9,13 +9,13 @@ Intel RealSense T265
 ..  youtube:: HCyTt0xK8CQ
     :width: 100%
 
-This article explains how to setup an `Intel Realsense T265 <https://store.intelrealsense.com/buy-intel-realsense-tracking-camera-t265.html?_ga=2.225595998.511560227.1566178471-459370638.1562639781>`__ for use with ArduPilot as a substitude for a GPS allowing position control modes like Loiter, PosHold, RTL, Auto to work. This method uses a python script running on an RPI companion computer to send position information to ArduPilot without the use of `ROS <https://www.ros.org/>`__.
+This article explains how to setup an `Intel Realsense T265 <https://store.intelrealsense.com/buy-intel-realsense-tracking-camera-t265.html?_ga=2.225595998.511560227.1566178471-459370638.1562639781>`__ for use with ArduPilot as a substitude for a GPS allowing position control modes like Loiter, PosHold, RTL, Auto to work. This method uses a python script running on an RPI companion computer to send position information to ArduPilot without the use of `ROS <https://www.ros.org/>`__.  The `setup using ROS is here <https://ardupilot.org/dev/docs/ros-vio-tracking-camera.html>`__.
 
 What to Buy
 -----------
 
 - `Intel RealSense Tracking Camera T265 <https://www.intelrealsense.com/tracking-camera-t265/>`__
-- `Raspberry Pi 4 <https://www.raspberrypi.org/products/raspberry-pi-4-model-b/>`__ (recommended) or `Raspberry Pi 3 <https://www.raspberrypi.org/products/raspberry-pi-3-model-b/>`__
+- `Raspberry Pi 4 <https://www.raspberrypi.org/products/raspberry-pi-4-model-b/>`__ (2GB or 4GB recommended, 8GB has issues) or `Raspberry Pi 3 <https://www.raspberrypi.org/products/raspberry-pi-3-model-b/>`__
 - 16GB (or larger) SD card
 - `PiConnectLite <https://www.rpanion.com/product/pi-connect-lite/>`__ to connect the RPI to the autopilot (optional)
 
@@ -26,32 +26,64 @@ What to Buy
 Hardware Setup
 --------------
 
-.. image:: ../../../dev/source/images/ros-vio-connection.png
-    :target: ../_images/ros-vio-connection.png
+.. image:: ../../../images/t265-rpi4-pixhawk.png
+    :target: ../_images/t265-rpi4-pixhawk.png
+    :width: 500px
 
 - Download the latest APSync Ubuntu image (`found here <https://firmware.ardupilot.org/Companion/apsync/apsync-rpi-ubuntu-t265-latest.img.xz>`__) to your PC and then flash it to the 16GB (or larger) SD card using a tool such as `Etcher <https://www.balena.io/etcher/>`__ or `Win32DiskImager <https://sourceforge.net/projects/win32diskimager/>`__ and then insert it into the RPI's SD Card slot
-- Mount the Intel RealSense T265 on the vehicle facing forward (see below for information other orientations)
-- Connect the Intel RealSense T265's USB cable to one of the RPI4's blue USB3 port
+- Mount the Intel RealSense T265 on the vehicle facing forward (see below for information other orientations) using thick double sided tape to better isolate the camera from vibrations
+- Connect the Intel RealSense T265's USB cable to one of the RPI4's blue USB3 ports
 - Connect the PiConnectLite's power cable to the battery (7V to 30V)
-- Connect the PiConnectLite's serial cable to one of the autopilot's telemetry ports (i.e. Telem1, Telem2)
+- Connect the PiConnectLite's serial cable to one of the autopilot's telemetry ports (i.e. Telem1, Telem2). The only signals used in this cable are TX, RX and GND. The other signals are NC.
 
 Configure ArduPilot
 -------------------
 
-Connect to the autopilot with a ground station (i.e. Mission Planner) and check that the following parameters are set as shown below:
+Connect to the autopilot with a ground station (i.e. Mission Planner) and check that the following parameters are set:
 
-- :ref:`AHRS_EKF_TYPE <AHRS_EKF_TYPE>` = 2 (the default) to use EKF2 (as of this writing, EKF3 is **not** supported for handling external navigation data)
+- :ref:`SERIAL2_PROTOCOL <SERIAL2_PROTOCOL>` = 2 (MAVLink2).  Note this assumes the RPI4 is connected to AutoPilot "Telem2" port.
+- :ref:`SERIAL2_BAUD <SERIAL2_BAUD>` = 921 (921600 baud)
+
+For ArduPilot-4.0 (and earlier):
+
+- :ref:`AHRS_EKF_TYPE <AHRS_EKF_TYPE>` = 2 (the default) to use EKF2
 - :ref:`EK2_ENABLE<EK2_ENABLE>` = 1 (the default)
 - :ref:`EK3_ENABLE<EK3_ENABLE>` = 0 (the default)
-- :ref:`GPS_TYPE<GPS_TYPE>`  = 0 to disable the GPS
 - :ref:`EK2_GPS_TYPE<EK2_GPS_TYPE>`  = 3 to disable the EKF’s use of the GPS
 - :ref:`EK2_POSNE_M_NSE<EK2_POSNE_M_NSE>`  = 0.1
 - :ref:`EK2_VELD_M_NSE<EK2_VELD_M_NSE>`  = 0.1
 - :ref:`EK2_VELNE_M_NSE<EK2_VELNE_M_NSE>`  = 0.1
+- :ref:`GPS_TYPE<GPS_TYPE>`  = 0 to disable the GPS
 - :ref:`COMPASS_USE<COMPASS_USE>` = 0,  :ref:`COMPASS_USE2<COMPASS_USE2>`  = 0, :ref:`COMPASS_USE3<COMPASS_USE3>`  = 0 to disable the EKF’s use of the compass and instead rely on the heading from external navigation data
-- Configure serial port to connect to companion computer with ``SERIALx_BAUD`` and ``SERIALx_PROTOCOL = 1``
 
 After the parameters are modified, reboot the autopilot.  After about 1 minute the vehicle should appear on the ground station map in central Africa.
+
+For ArduPilot-4.1 (and later):
+
+- :ref:`AHRS_EKF_TYPE <AHRS_EKF_TYPE>` = 3 (EKF3)
+- :ref:`EK2_ENABLE <EK2_ENABLE>` = 0 (disabled)
+- :ref:`EK3_ENABLE <EK3_ENABLE>` = 1 (enabled)
+- :ref:`EK3_SRC1_POSXY <EK3_SRC1_POSXY>` = 6 (ExternalNav)
+- :ref:`EK3_SRC1_VELXY <EK3_SRC1_VELXY>` = 6 (ExternalNav)
+- :ref:`EK3_SRC1_POSZ <EK3_SRC1_POSZ>` = 1 (Baro which is safer because of the camera's weakness to high vibrations)
+- :ref:`EK3_SRC1_VELZ <EK3_SRC1_VELZ>` = 6 (ExternalNav)
+- :ref:`GPS_TYPE <GPS_TYPE>`  = 0 to disable the GPS
+- :ref:`VISO_TYPE <VISO_TYPE>` = 2 (IntelT265)
+
+If you wish to use the camera's heading:
+
+- :ref:`COMPASS_USE <COMPASS_USE>` = 0, :ref:`COMPASS_USE2 <COMPASS_USE2>` = 0, :ref:`COMPASS_USE3<COMPASS_USE3>` = 0 to disable all compasses
+- :ref:`EK3_SRC1_YAW <EK3_SRC1_YAW>` = 6 (ExternalNav)
+
+If you wish to use the autopilot's compass for heading:
+
+- :ref:`COMPASS_USE <COMPASS_USE>` = 1 (the default)
+- :ref:`EK3_SRC1_YAW <EK3_SRC1_YAW>` = 1 (Compass)
+- :ref:`RC7_OPTION <RC7_OPTION>` = 80 (Viso Align) to allow the pilot to re-align the camera's yaw with the AHRS/EKF yaw before flight with auxiliary switch 7.  Re-aligning yaw before takeoff is a good idea or loss of position control (aka "toilet bowling") may occur.
+
+After the parameters are modified, reboot the autopilot.  Connect with the ground station and (if using Mission Planner) right-mouse-button-click on the map, select "Set Home Here", "Set EKF Origin Here" to tell ArduPilot where the vehicle is and it should instantly appear on the map.
+
+If you wish to switch between GPS and T265 see the :ref:`GPS/Non-GPS Transitions <common-non-gps-to-gps>` wiki page
 
 System Overview
 ===============
@@ -81,7 +113,7 @@ Install ``librealsense`` and ``pyrealsense2``
 The Realsense T265 is supported via `librealsense <https://github.com/IntelRealSense/librealsense>`__ on Windows and Linux. Installation process varies widely for different systems, hence refer to `the official github page <https://github.com/IntelRealSense/librealsense>`__ for instructions for your specific system:
 
 - `Ubuntu <https://github.com/IntelRealSense/librealsense/blob/master/doc/installation.md>`__
-- `Jetson <https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_jetson.md>`__
+- `Jetson <https://github.com/IntelRealSense/librealsense/blob/master/wrappers/python/readme.md>`__ (Compiling from source is needed to get the Python wrapper ``pyrealsense2``)
 - `Odroid <https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_odroid.md>`__
 - `Windows <https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_windows.md>`__
 - `Raspbian <https://github.com/IntelRealSense/librealsense/blob/master/doc/installation_raspbian.md>`__
@@ -125,7 +157,7 @@ Python Packages Installation
     # Install serial packages for serial connection
     sudo pip3 install pyserial
 
-- Download the script `t265_to_mavlink.py <https://github.com/hoangthien94/vision_to_mavros/blob/master/scripts/t265_to_mavlink.py>`__. In case you have downloaded the `vision_to_mavros <https://github.com/hoangthien94/vision_to_mavros>`__ package, it can be found in the script folder.
+- Download the script `t265_to_mavlink.py <https://github.com/thien94/vision_to_mavros/blob/master/scripts/t265_to_mavlink.py>`__. In case you have downloaded the `vision_to_mavros <https://github.com/thien94/vision_to_mavros>`__ package, it can be found in the script folder.
 
 .. code-block:: bash
 
@@ -133,7 +165,7 @@ Python Packages Installation
     cd ~/path/to/the/script/
 
     # Download the script if you haven’t already:
-    wget https://raw.githubusercontent.com/hoangthien94/vision_to_mavros/master/scripts/t265_to_mavlink.py
+    wget https://raw.githubusercontent.com/thien94/vision_to_mavros/master/scripts/t265_to_mavlink.py
 
     chmod +x t265_to_mavlink.py
 
@@ -151,7 +183,7 @@ How to run
     cd ~/path/to/the/script/
 
     # Download and run a test script, you should see a short stream of pose data coming from the T265 on the terminal
-    wget https://raw.githubusercontent.com/hoangthien94/vision_to_mavros/master/scripts/t265_test_streams.py
+    wget https://raw.githubusercontent.com/thien94/vision_to_mavros/master/scripts/t265_test_streams.py
     chmod +x t265_test_streams.py
     python3 t265_test_streams.py
 
@@ -265,7 +297,7 @@ The script can be run automatically at boot time.
 
 .. code-block:: bash
 
-    wget https://raw.githubusercontent.com/hoangthien94/vision_to_mavros/master/scripts/t265.sh
+    wget https://raw.githubusercontent.com/thien94/vision_to_mavros/master/scripts/t265.sh
 
     nano t265.sh
 

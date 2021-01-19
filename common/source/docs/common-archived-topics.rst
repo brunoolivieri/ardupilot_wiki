@@ -50,6 +50,8 @@ value to users with old hardware.
     Troubleshooting <troubleshooting>
     Landing Gear <landing-gear>
     ADNS3080 Mouse Sensor (no longer supported) <common-mouse-based-optical-flow-sensor-adns3080>
+    Analog Sonar (AC3.1) <sonar>
+    Tricopter Setup <archived-tricopter>
     [/site]
 [site wiki="rover"]
     Pre-4.0 Rover Avoidance <rover-object-avoidance>
@@ -88,8 +90,11 @@ value to users with old hardware.
     Building for Erle-Brain <building-for-erle-brain>
     Building for Navio on RPI 2<building-for-navio-on-rpi2>
     Intel Edison <intel-edison>
+    Interfacing with Pixhawk Using the NSH <interfacing-with-pixhawk-using-the-nsh>
     BeaglePilot Project <beaglepilot>
-    Making a Mavlink WiFi bridge using the Raspberry Pi <making-a-mavlink-wifi-bridge-using-the-raspberry-pi>
+    Making a MAVLink WiFi bridge using the Raspberry Pi <making-a-mavlink-wifi-bridge-using-the-raspberry-pi>
+    HITL Simulators <hitl-simulators>
+    Weekly meetings on Mumble Server <ardupilot-mumble-server>
 
 [/site]
 

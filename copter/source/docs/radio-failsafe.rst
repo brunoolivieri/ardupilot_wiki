@@ -48,7 +48,7 @@ By default, most newly purchased receivers will simply not output pulses if cont
 
 Receiver configuration for low-throttle method
 ----------------------------------------------
-The **"Low-Throttle" method** pulls the throttle channel (normally channel 3) to a value below the bottom of it's normal range (normally below 1000us).  This method is used by Futaba systems and many older systems.  Below is the setup method for a Futaba T7C Transmitter with R617FS or TFR4-B receiver which uses the "low throttle" method.
+The **"Low-Throttle" method** pulls the throttle channel (normally channel 3) to a value below the bottom of its normal range (normally below 1000us).  This method is used by Futaba systems and many older systems.  Below is the setup method for a Futaba T7C Transmitter with R617FS or TFR4-B receiver which uses the "low throttle" method.
 
 ..  youtube:: qf8YinLKQww
     :width: 100%
@@ -71,7 +71,7 @@ The :ref:`FS_THR_ENABLE<FS_THR_ENABLE>` parameter can be set in the Mission Plan
 
 -  **Disabled** (Value 0) will disable the radio failsafe entirely.
 -  **Enabled Always RTL** (Value 1) will switch the copter to RTL Mode.  If the GPS position is not usable, the copter will change to Land Mode instead.
--  **Enabled Continue with Mission in Auto Mode (Deprecated in 4.0+)** (Value 2) will ignore the failsafe in an Auto Mode mission. Otherwise, it will behave the same as *Enabled Always RTL*. This option no longer exists in ArduCopter 4.0. Instead, see the :ref:`FS_OPTIONS<FS_OPTIONS>` parameter for this function. Setting this value in Copter 4.0 and later version will automatically be converted and set to (Value 1) and the :ref:`FS_OPTIONS<FS_OPTIONS>` will be modified to include bit (0) in the bitmask for "Continue if in auto mode on Radio Failsafe".
+-  **Enabled Continue with Mission in Auto Mode ((this value has no effect in 4.0 and later with :ref:`FS_OPTIONS<FS_OPTIONS>` parameter replacing function, see below ))** (Value 2) will ignore the failsafe in an Auto Mode mission. Otherwise, it will behave the same as *Enabled Always RTL*. This option no longer exists in ArduCopter 4.0. Instead, see the :ref:`FS_OPTIONS<FS_OPTIONS>` parameter for this function. Setting this value in Copter 4.0 and later version will automatically be converted and set to (Value 1) and the :ref:`FS_OPTIONS<FS_OPTIONS>` will be modified to include bit (0) in the bitmask for "Continue if in auto mode on Radio Failsafe".
 -  **Enabled Always Land** (Value 3) will switch the copter to Land Mode.
 -  **Enabled SmartRTL or RTL** (Value 4) will switch the copter to SmartRTL mode. If SmartRTL is not available, the copter will switch to RTL Mode instead.  If the GPS position is not usable, the copter will change to Land Mode instead.
 -  **Enabled SmartRTL or Land** (Value 5) will switch the copter to SmartRTL mode. If SmartRTL is not available, the copter will switch to Land Mode instead.
@@ -113,7 +113,7 @@ channel drops with loss of radio contact**
 #. Ensure your RC transmitter is on and connected with the throttle all
    the way down and flight mode set to Stabilize
 #. The throttle (channel 3) PWM value should be approximately as in
-   first illustration below.  It's value may be higher or lower but it
+   first illustration below.  Its value may be higher or lower but it
    should definitely be at least 10 higher than the value held in the FS
    PWM field
 #. Turn the transmitter off and the throttle PWM value should drop to be

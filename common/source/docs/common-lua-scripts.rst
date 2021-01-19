@@ -19,18 +19,18 @@ This page describes how to setup scripts on your autopilot, the scripting API an
 Getting Started
 ===============
 
-- Ensure your autopilot has at least 2 MB’s of flash and 70KB of memory.  High powered autopilots like the Hex Cube Orange and HolyBro Durandal will certainly work well but check the specifications of your :ref:`autopilot <common-autopilots>`
-- Set :ref:`SCR_ENABLE <SCR_ENABLE>` to 1 to enable scripting (refresh or reboot to see all ``SCR_`` parameters)
-- Upload scripts (files with extension .lua) to the autopilot's SD card's ``APM/scripts`` folder (if this folder does not exist please create it).  If using Mission Planner this can be done using MAVFTP.  If using a simulator the ``scripts`` folder is in the directory the simulator was started from.
+- Ensure your autopilot has at least 2 MB of flash and 70 kB of memory.  High powered autopilots like the Hex Cube Orange and HolyBro Durandal will certainly work well but check the specifications of your :ref:`autopilot <common-autopilots>`.
+- Set :ref:`SCR_ENABLE <SCR_ENABLE>` to 1 to enable scripting (refresh or reboot to see all ``SCR_`` parameters).
+- Upload scripts (files with extension .lua) to the autopilot's SD card's ``APM/scripts`` folder (if this folder does not exist you can create it by setting :ref:`SCR_ENABLE<SCR_ENABLE>` to 1 and rebooting).  If using Mission Planner, this can be done using MAVFTP.  If using a simulator, the ``scripts`` folder is in the directory the simulator was started from.
 
   .. image:: ../../../images/scripting-MP-mavftp.png
       :target: ../_images/scripting-MP-mavftp.png
       :width: 450px
 
-- Sample scripts can be found `here for stable Plane <https://github.com/ArduPilot/ardupilot/tree/ArduPlane-stable/libraries/AP_Scripting/examples>`__, `Copter <https://github.com/ArduPilot/ardupilot/tree/ArduCopter-stable/libraries/AP_Scripting/examples>`__ and `Rover <https://github.com/ArduPilot/ardupilot/tree/APMrover2-stable/libraries/AP_Scripting/examples>`__.  The latest development scripts can be found `here <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Scripting/examples>`__
-- When the autopilot is powered on it will load and start all scripts
-- Messages and errors are sent to the ground station and, if using Mission Planner, can be viewed in the Data screen's "Messages" tab
-- :ref:`SCR_HEAP_SIZE <SCR_HEAP_SIZE>` can be adjusted to increase or decrease the amount of memory available for scripts.  The default of 43KB is sufficient for small scripts, and fits onto most autopilots.  The autopilot's free memory depends highly upon which features and peripherals are enabled.  If this parameter is set too low, scripts may fail to run.  If set too high other autopilot features including Terrain Following may fail to initialise.
+- Sample scripts can be found `here for stable Plane <https://github.com/ArduPilot/ardupilot/tree/ArduPlane-stable/libraries/AP_Scripting/examples>`__, `Copter <https://github.com/ArduPilot/ardupilot/tree/ArduCopter-stable/libraries/AP_Scripting/examples>`__ and `Rover <https://github.com/ArduPilot/ardupilot/tree/APMrover2-stable/libraries/AP_Scripting/examples>`__.  The latest development scripts can be found `here <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Scripting/examples>`__.
+- When the autopilot is powered on it will load and start all scripts.
+- Messages and errors are sent to the ground station and, if using Mission Planner, can be viewed in the Data screen's "Messages" tab.
+- :ref:`SCR_HEAP_SIZE <SCR_HEAP_SIZE>` can be adjusted to increase or decrease the amount of memory available for scripts. The default of 43 kB is sufficient for small scripts, and fits onto most autopilots. The autopilot's free memory depends highly upon which features and peripherals are enabled. If this parameter is set too low, scripts may fail to run. If set too high other autopilot features such as Terrain Following or even the EKF may fail to initialise. On autopilots with a STM32F4 microcontroller Smart RTL and Terrain Following need to be nearly always disabled (they are usally enabled by default, set :ref:`SRTL_POINTS <SRTL_POINTS>` = 0, :ref:`TERRAIN_ENABLE <TERRAIN_ENABLE>` = 0).
 
 What Scripts Can Do
 ===================
@@ -101,6 +101,8 @@ A Location userdata object supports the following calls:
 - :code:`lat( [new_lat] )` - If called with no arguments, returns the current latitude in degrees * 1e7 as an integer. If called with one argument it will assign the value to the latitude.
 
 - :code:`lng( [new_lng] )` - If called with no arguments, returns the current longitude in degrees * 1e7 as an integer. If called with one argument it will assign the value to the longitude.
+
+- :code:`alt( [new_alt] )` - If called with no arguments, returns the current altitude in cm as an integer. If called with one argument it will assign the value to the altitude.
 
 - :code:`relative_alt( [is_relative] )` - If called with no arguments returns true if the location is planned as relative to home. If called with a boolean value this will set the relative altitude.
 
@@ -336,6 +338,8 @@ Notify (notify:)
 
 - :code:`play_tune( tune )` - Plays a MML tune through the buzzer on the vehicle. The tune is provided as a string.
 
+An online `tune tester can be found here <https://firmware.ardupilot.org/Tools/ToneTester/>`__
+
 
 Vehicle (vehicle:)
 ~~~~~~~~~~~~~~~~~~
@@ -381,6 +385,11 @@ Servo Channels (SRV_Channels:)
 
 - :code:`find_channel(output_function)` - Returns first servo output number -1 of an output assigned output_function (See ``SERVOx_FUNCTION`` parameters ). False if none is assigned.
 
+- :code:`get_output_pwm(output_function)` - Returns first servo output PWM value an output assigned output_function (See ``SERVOx_FUNCTION`` parameters ). False if none is assigned.
+
+- :code:`set_output_pwm_chan_timeout(channel, pwm, timeout)` - Sets servo channel to specified PWM for a time in ms. This overrides any commands from the autopilot until the timeout expires.
+
+
 Servo Output
 ~~~~~~~~~~~~
 
@@ -396,13 +405,11 @@ See the `code examples folder  <https://github.com/ArduPilot/ardupilot/tree/mast
 How to Add New Bindings
 =======================
 
-To give Lua scripts access to more features of ArduPilot the API can be extended by creating new bindings.  If the object is already available to Lua (i.e. AHRS, Location, etc) the process is as follows:
+To give Lua scripts access to more features of ArduPilot the API can be extended by creating new bindings. The process is as follows:
 
-- Find the method or function you would like to expose to Lua.  For example if you wanted to expose an additional feature of AHRS you would first find the method within `libraries/AP_AHRS/AP_AHRS.h <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_AHRS/AP_AHRS.h>`__
-- Edit the `libraries/AP_Scripting/generator/description/bindings.desc <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_Scripting/generator/description/bindings.desc>`__ and add a new line in the appropriate section for the method.
-- Open a command line prompt and cd to the `/libraries/AP_Scripting/generator <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Scripting/generator>`__ directory and type "make run"
-
-`Here is an example PR <https://github.com/ArduPilot/ardupilot/pull/11787>`__ which adds a binding for AHRS's get_roll, get_pitch and get_yaw methods.
+- Find the method or function you would like to expose to Lua. For example if you wanted to expose an additional feature of AHRS you would first find the method within `libraries/AP_AHRS/AP_AHRS.h <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_AHRS/AP_AHRS.h>`__. This can be an already existing method (function) or a method (function) newly added to the code.
+- Edit the `libraries/AP_Scripting/generator/description/bindings.desc <https://github.com/ArduPilot/ardupilot/blob/master/libraries/AP_Scripting/generator/description/bindings.desc>`__ and add a new line in the appropriate section for the method, or add a new section if a new class shall be added by following the examples of the other sections.
+- Open a command line prompt and cd to the `/libraries/AP_Scripting/generator <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_Scripting/generator>`__ directory and type "make run". Alternatively, and probably easier, clean the distribution (./waf distclean) and restart compilation from there as usual.
 
 Further Information
 ===================

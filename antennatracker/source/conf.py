@@ -19,8 +19,9 @@ import os
 sys.path.insert(0,'../..')
 import common_conf
 
-# Parameter multi-versioning needs at least 3000. Setting 5000 to make room for the next versions.
-sys.setrecursionlimit(5000)
+# 2019-dec: Parameter multi-versioning needs at least 3000. Setting 5000 to make room for the next versions.
+# 2020-jun: Increasing to 15000
+sys.setrecursionlimit(15000)
 
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here. If the directory is relative to the
@@ -165,6 +166,8 @@ html_favicon = '../../images/favicon_default.ico'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+html_js_files = ['./useralerts.js']
 
 # Add any extra paths that contain custom files (such as robots.txt or
 # .htaccess) here, relative to this directory. These files are copied

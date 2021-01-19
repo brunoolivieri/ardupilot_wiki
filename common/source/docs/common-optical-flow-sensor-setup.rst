@@ -98,10 +98,11 @@ Second Flight
 .. warning::
 
    You will need at least 15m of clear space around the vehicle to do this flight safely.
-   If the optical flow velocity estimates are bad, you will have little warning and the copter may lean to it's maximum lean angle very quickly.
+   If the optical flow velocity estimates are bad, you will have little warning and the copter may lean to its maximum lean angle very quickly.
 
 #. Set :ref:`EK2_GPS_TYPE <EK2_GPS_TYPE>` = 3 to make the EKF ignore GPS and use the flow sensor
 #. Ensure you have a loiter and hover mode available on you transmitter.
+#. Set "EKF Origin" on Ground Control Station map. In Mission Planner, right click, select "Set Home here", and choose to set "set EKF origin here".
 #. Take-off in loiter and bring the Copter/Quadplane to about 1m height
 #. If the vehicle starts to accelerate away or there is erratic pitch or roll
    movement, then switch to hover and land. You will need to

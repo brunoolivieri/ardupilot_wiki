@@ -29,7 +29,7 @@ ArduPilot sub-divides tailsitters into two broad categories:
 
   - Within non-vectored are two sub-categories: Single/Dual Motor and CopterMotor. The first uses one or two motors and can employ only differential thrust , while the second uses three, four, or more motors and operates in a more copter-like fashion.
 
-.. note:: Currently all CopterMotor style Quadplanes do not use any yaw torque control. Roll (with respect to plane body) is only controlled by the flying surface (ailerons or elevons)
+.. note:: Currently all CopterMotor style Tailsitters do not use any yaw torque control. Roll (with respect to plane body) is only controlled by the flying surface (ailerons or elevons). Future releases will add this.
 
 Tailsitter Configuration
 ========================
@@ -65,6 +65,7 @@ However, it can also have copter-like motors, like a conventional QuadPlane if :
 +------------------------+------------------------------------+----------------------------------+
 |  Tri                   | 7                                  | ignored                          |
 +------------------------+------------------------------------+----------------------------------+
+
 
 Motor Rotation and Layout
 =========================
@@ -133,10 +134,18 @@ So a value of e.g. 60 degrees results in switching from copter to plane controll
 PID gain scheduling
 ===================
 
-There are 3 parameters controlling gain scheduling:  :ref:`Q_TAILSIT_GSCMSK<Q_TAILSIT_GSCMSK>` is a 3 bit mask with bit 0 enabling gain boost with maximum set by parameter :ref:`Q_TAILSIT_THSCMX<Q_TAILSIT_THSCMX>`.
-This is the maximum boost that will be applied to the control surfaces when throttle is below hover, this should be reduced if oscillations are seen at low throttle.
-Bit 1 enables attitude/throttle based gain attenuation with minimum gain (maximum attenuation) set by parameter :ref:`Q_TAILSIT_GSCMIN<Q_TAILSIT_GSCMIN>`. With this option, control surface deflection is reduced at high tilt angles and high throttle levels to prevent oscillation at high airspeeds.
-.. Bit 2 enables airspeed based gain interpolation (not yet merged).
+PID gains can be scaled for fixed wing control surfaces while in VTOL flight modes for Tailsitters by setting ``Q_TAILSIT_THSCMX``.
+
+- If greater than 1: defines the maximum boost that will be applied to the fixed wing control surfaces when throttle is below hover in VTOL modes, this should be reduced if oscillations are seen at low throttle. Default is 5, providing a lot of boost to control surfaces.
+
+- If less than 1: then instead of boosting control surface deflection below hover throttle, deflection is reduced at high airspeeds (if an airspeed sensor is available and enabled) or at high tilt angles and high throttle levels, such as when moving rapdily in QSTABILZE or QACRO mode . The maximum attenuation is currently hardwired to 0.2, so control surface deflection is reduced by a factor of 0.2 when airspeed exceeds :ref:`ARSPD_FBW_MAX<ARSPD_FBW_MAX>`, or if airspeed is not available, when tilt reaches 90 degrees from vertical or at max throttle.
+
+.. _4.1-gainscaling:
+
+In Plane 4.1 and later, the above parameter and gain scheduling is changed to 3 parameters controlling gain scaling via :ref:`Q_TAILSIT_GSCMSK<Q_TAILSIT_GSCMSK>`, which is a 3 bit mask allowing several options:
+    - Bit 0 enables gain boost with maximum set by parameter ``Q_TAILSIT_THSCMX``. This is the maximum boost that will be applied to the control surfaces when throttle is below hover, this should be reduced if oscillations are seen at low throttle.
+    - Bit 1 enables attitude/throttle based gain attenuation with minimum gain (maximum attenuation) set by parameter :ref:`Q_TAILSIT_GSCMIN<Q_TAILSIT_GSCMIN>`. With this option, control surface deflection is reduced at high tilt angles and high throttle levels to prevent oscillation at high airspeeds.
+    - Bit 2 is reserved for future enable of airspeed sensor based gain interpolation .
 
 Orientation
 ===========
@@ -174,6 +183,8 @@ If your tailsitter has vectored thrust then you should set the
 SERVOn_FUNCTION values for your two tilt servos for the left and right
 motors and for the left and right motor throttles.
 
+.. note:: All tailsitters ignore the :ref:`Q_TILT_TYPE<Q_TILT_TYPE>` parameter, requiring continuous output servos, and will drive the tilt servos appropriately.
+
 For example, if your left tilt servo is channel 5 and your right tilt
 servo is channel 6, then set:
 
@@ -189,6 +200,8 @@ you also need to set the right SERVOn_REVERSED values, and the right
 SERVOn_TRIM, SERVOn_MIN and SERVOn_MAX values, as appropriate.
 
 :ref:`Q_A_ANGLE_BOOST<Q_A_ANGLE_BOOST>` should be disabled for vectored thrust tailsitters. Failure to disable this will cause the throttle to decrease as the nose dips, making the nose dip even further and resulting in a crash. 
+
+.. caution:: When disarmed, switching to QHOVER or QLOITER will force the motors forward into fixed wing orientation. If armed in this position, a prop strike could occur for Belly Sitter configurations. Tilt will be raised to VTOL position when throttle is raised above idle, but the strike will have already occurred. The solution is to momentarily raise the throttle above idle, allowing the tilts to raise, return throttle stick to idle, then arm. This needs to be done also for AUTO mode takeoffs, which should be started from QSTABILIZE with motors raised, armed, and then change to AUTO for the takeoff.
 
 Vectored Gains
 ==============

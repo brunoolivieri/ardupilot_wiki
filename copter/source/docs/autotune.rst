@@ -14,23 +14,20 @@ AutoTune attempts to automatically tune the Stabilize P, Rate P and D, and maxim
     :width: 100%
 
 
-There a number of problems that can prevent AutoTune from providing a good tune. Some of the reasons AutoTune can fail are:
+There a number of problems that can prevent AutoTune from providing a good tune including:
 
-- High levels of gyro noise.
-- Incorrect value of :ref:`MOT_THST_EXPO <MOT_THST_EXPO>`.
-- Flexible frame or payload mount.
-- Overly flexible vibration isolation mount.
-- Non-linear ESC response.
-- Very low setting for :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`.
-- Overloaded propellers or motors.
-
+- Strong wind
+- High levels of gyro noise
+- Non-linear ESC response caused by incorrect value of :ref:`MOT_THST_EXPO <MOT_THST_EXPO>`
+- Flexible frame or payload mount
+- Overly flexible vibration isolation mount
+- Very low setting for :ref:`MOT_SPIN_MIN <MOT_SPIN_MIN>`
+- Overloaded propellers or motors
 
 Setup before flying in AutoTune mode
 ====================================
 #. Set up one flight mode switch position to be AltHold.
-#. Set an :ref:`Auxiliary Function Switch <channel-7-and-8-options>`
-   to AutoTune to allow you to turn the auto tuning on/off with the a
-   switch.\ |AutoTuneCh7Switch|
+#. Set an RC channel :ref:`Auxiliary Function <common-auxiliary-functions>` switch or an :ref:`Auxiliary Function Switch <channel-7-and-8-options>` (prior to version 4.0) to AutoTune to allow you to turn the auto tuning on/off with the a switch.
 #. Remove the camera gimbal or any other parts of the frame that could wobble in flight
 #. Select which combination of axis (roll, pitch, yaw) you wish to tune using the :ref:`AUTOTUNE_AXES <AUTOTUNE_AXES>` parameter
 #. Set the autotune's aggressiveness using the :ref:`AUTOTUNE_AGGR <AUTOTUNE_AGGR>` parameter (0.1=agressive, 0.075=medium, 0.050=weak), normally start with the default 0.1.
@@ -83,7 +80,11 @@ If the vehicle feels sloppy after the AutoTune, try increasing the :ref:`AUTOTUN
 Invoke AutoTune with Position Hold
 ==================================
 
-In Copter-3.5 (and higher) AutoTune performs a weak position hold if invoked from Loiter or PosHold flight modes (as opposed to AltHold).
+.. warning::
+
+   A better tune can often be achieved by invoking AutoTune from AltHold as described above instead of from Loiter or PosHold as described below
+   
+AutoTune performs a weak position hold if invoked from Loiter or PosHold flight modes (as opposed to AltHold) while doing an autotune.
 
    .. image:: ../images/autotune_from_loiter.png
        :target: ../_images/autotune_from_loiter.png
@@ -188,6 +189,8 @@ If you stopped the tune  and dis-armed while still in AUTOTUNE, and an axis tune
 ::
 
  09:19:48	AutoTune: Saved gains for Pitch
+
+.. tip:: If you do happen to accidentally discard a sessions AUTOTUNE values by disarming when not in AUTOTUNE, you can examine the dataflash log for the GCS messages it sent during tune and manually set them on the bench.
 
 
 -----

@@ -16,7 +16,7 @@ The Cube autopilot is a further evolution of the Pixhawk autopilot. It is design
 -  3 sets of IMU sensors for extra redundancy
 -  2 sets of IMU are vibration-isolated mechanically, reducing the effect of frame vibration to state estimation
 -  IMUs are temperature-controlled by onboard heating resistors, allowing optimum working temperature of IMUs
--  The entire flight management unit(FMU) and inertial management unit(IMU) are housed in a reatively small form factor (a cube). All inputs and outputs go through a 80-pin DF17 connector, allowing a plug-in solution for manufacturers of commercial systems. Manufacturers can design their own carrier boards to suite their specific needs.
+-  The entire flight management unit(FMU) and inertial management unit(IMU) are housed in a relatively small form factor (a cube). All inputs and outputs go through a 80-pin DF17 connector, allowing a plug-in solution for manufacturers of commercial systems. Manufacturers can design their own carrier boards to suite their specific needs.
 
 Specifications
 ==============
@@ -409,22 +409,33 @@ This section details the pin assignments of the standard carrier board of The Cu
 
 
 
+Cubepilot Ecosystem
+===================
+
+.. image:: ../../../images/Cubepilot_ecosystem.jpg
+    :target: ../_images/Cubepilot_ecosystem.jpg
+
+
+More Information
+================
+
+For more information and instructions on setting up and using the Cubepilot system see  `Cubepilot Docs  <https://docs.cubepilot.org/user-guides/>`__
+
+For technical help and support on the cubepilot system see  `Cubepilot Forum  <https://discuss.cubepilot.org/>`__
+
+Company information on Cubpilot can be found at  `www.proficnc.com  <http://www.proficnc.com>`__
+
+
+Carrier Board Design
+====================
+
+The reference design files of the standard carrier board are available in `github  <https://github.com/proficnc/The-Cube>`__, or `here <https://github.com/ArduPilot/Schematics/tree/master/ProfiCNC>`__ ,this serve as a starting point for designers to design their own system based on The Cube autopilot.
+
 Where to Buy
 ============
 
 Official retailers are listed `here  <http://www.proficnc.com/stores>`__.
 
-Quick Start
-===========
-
-Use the :ref:`Pixhawk Wiring QuickStart <common-pixhawk-wiring-and-quick-start>` as a guide. The Cube update coming soon
-
-More Information
-================
-
-see  `www.proficnc.com  <http://www.proficnc.com>`__
-
-The reference design files of the standard carrier board are available in `github  <https://github.com/proficnc/The-Cube>`__, or `here <https://github.com/ArduPilot/Schematics/tree/master/ProfiCNC>`__ ,this serve as a starting point for designers to design their own system based on The Cube autopilot.
 
 More Images
 ===========

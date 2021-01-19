@@ -18,7 +18,7 @@ Creating a new page
    about your topic — it is better to improve an existing topic than create
    a near-duplicate! 
    Also discuss it with the 
-   `Wiki Editors Gitter channel <https://gitter.im/ArduPilot/ardupilot_wiki>`__ or `Wiki issue list <https://github.com/ArduPilot/ardupilot_wiki/issues>`__.
+   `Wiki Editors on Discord <https://ardupilot.org/discord>`__ or enter an issue in the `Wiki issue list <https://github.com/ArduPilot/ardupilot_wiki/issues>`__.
 
 Pages should be created in the **/source/docs/** folder for your target wiki, given a "descriptive" name,
 and the file suffix ".rst". Typically we use all lower case for filename, and separate words using "-" or "_". 
@@ -381,4 +381,4 @@ Note that the path is absolute, and relative to the source directory for the wik
 
     .. image:: /images/image_file_name.jpg
 
-[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev"]
+[copywiki destination="copter,plane,rover,planner,planner2,antennatracker,dev,ardupilot,mavproxy"]

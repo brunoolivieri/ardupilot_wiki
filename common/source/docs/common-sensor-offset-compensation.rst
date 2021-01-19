@@ -6,7 +6,7 @@
 Sensor Position Offset Compensation
 ===================================
 
-Copter-3.5 (and higher) includes compensation for sensor placement on the vehicle.  This page clarifies what parameters can be set and how they should be set.
+ArduPilot includes compensation for sensor placement on the vehicle.  This page clarifies what parameters can be set and how they should be set.
 
 .. note::
 
@@ -35,7 +35,7 @@ For the best results the autopilot (and thus the IMUs) should be placed at the c
 - :ref:`INS_POS3_X <INS_POS3_X>`, :ref:`INS_POS3_Y <INS_POS3_Y>`, :ref:`INS_POS3_Z <INS_POS3_Z>` the third IMU's position from the vehicle's center-of-gravity
 
 The compensation is only *partial* because ArduPilot can correct the vehicle's velocity and position estimate but it does not correct the acceleration estimate.
-For example if the autopilot was placed on the nose of a vehicle and the vehicle suddenly leans back (i.e. rotates so that it's nose points up) with no offset compensation the vehicle velocity
+For example if the autopilot was placed on the nose of a vehicle and the vehicle suddenly leans back (i.e. rotates so that its nose points up) with no offset compensation the vehicle velocity
 estimate would momentarily show the vehicle is climbing when it's not.  With the position offsets added the velocity would not show this momentary climb.  The EKF would still show a momentary vertical acceleration and
 because we use the acceleration in our altitude hold controllers this could still lead to the vehicle momentary reducing throttle.
 

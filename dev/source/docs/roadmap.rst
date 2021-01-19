@@ -59,8 +59,6 @@ Rover & Boat
 ------------
 
 - S-Curve navigation (`video from 2019 un-conference <https://www.youtube.com/watch?v=LHq5o9zgNWk>`__) (Leonard/Randy)
-- Stick Mixing in Auto (TomP)
-- Underwater mapping with scanning sonar (Randy/PeterB)
 - Precision Docking (using marker onshore) (Randy)
 - High speed sailing inprovements (Peter Hall)
 - Roll and pitch control for boats (Peter Hall)
@@ -112,6 +110,7 @@ Hardware & OS support
 - Log synthetic airspeed (Tridge)
 - Mission VFS download (Tridge)
 - Sensor (GPS, Baro, RFND, etc.) re-ordering (Sid, Tridge)
+- Ethernet (IP/TCP/UDP) support (Tom)
 
 
 Hardware
@@ -127,10 +126,10 @@ Hardware
 Non-GPS Navigation, Avoidance and Path Planning
 -----------------------------------------------
 
-- 3D Bendy Ruler & Object Database (Randy, Patrick Poirier)
+- 3D Bendy Ruler & Object Database (Randy, GSoC)
 - Add support for Intel RealSense D435 (ROS & non-ROS) (Patrick, GSoC)
-- Bendy Ruler try re-implementing bendy ruler as Lua (Tridge, Patrick Poirier)
-- Copter & Rover back away from objects (Randy, Patrick Poirier)
+- Bendy Ruler try re-implementing bendy ruler as Lua (Tridge)
+- Copter & Rover back away from objects (Randy, Peter Hall)
 - Improve Off-Board SLAM and Object Avoidance (:ref:`dev wiki link<ros-cartographer-slam>`) (Randy, Jaime, Patrick Poirier)
 - Improve reliability of T265 integration (reset handling, failsafe testing) (Randy, Jaime, Patrick Poirier)
 - Seamless GPS <-> Non-GPS transitioning (Randy)
@@ -141,9 +140,8 @@ Scripting
 ---------
 
 - All mission features available in Lua (MichaelDB)
-- Figure flight mode in Plane as a script (Randy)
-- Scripts creation parameter trees (Randy)
-- Sprayer moved out of C++, into Lua (Randy)
+- Figure flight mode in Plane as a script (Tridge)
+- Scripts creation parameter trees (Tridge)
 
 
 Documentation
@@ -172,7 +170,7 @@ Organizational
 --------------
 
 - Assist Ready-To-Fly manufacturers get their products to market
-- Find new BugMaster and support roles (Tridge, Randy, James, MIchaelDB)
+- Find new BugMaster and support roles (Tridge, Randy, James, MichaelDB) -- Complete!
 - Governance structure (James)
 
 
@@ -197,8 +195,8 @@ Below is a list of Roadmap items completed in 2019.  There were many more projec
 - Rate loop updates for Copter
 - SLAM integration for position estimation
 - Separate FF and PID input for correct scaling for Copter
-- Stand-By mode for Copter
-- Virtual flybar option for acro flight mode for Tradi Heli
+- Stand-By mode for Copter -- **COMPLETE!**
+- Virtual flybar option for acro flight mode for Tradi Heli -- **COMPLETE!**
 - Add Lua scripting to ArduPilot -- **COMPLETE!**
 - Add support for Intel RealSense T265 (ROS & non-ROS) -- **COMPLETE!**
 - Copter & Rover back away from objects -- **COMPLETE!**

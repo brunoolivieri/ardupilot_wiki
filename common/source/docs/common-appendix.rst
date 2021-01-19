@@ -10,7 +10,8 @@ the wiki.
 
 .. toctree::
     :maxdepth: 1
-    
+
+    Abbreviations <common-abbreviations>
     Acknowledgments <common-acknowledgments>
     Advanced user tools (downloads) <common-downloads_advanced_user_tools>
     Commercial Support <common-commercial-support>
@@ -55,4 +56,4 @@ the wiki.
 
 
 
-[copywiki destination="copter,plane,rover,planner,planner2,dev,antennatracker"]
+[copywiki destination="copter,plane,rover,planner,planner2,dev,antennatracker,mavproxy,ardupilot"]

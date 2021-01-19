@@ -86,8 +86,7 @@ Disabled
 ++++++++
 
 For normal operation, the Disabled output function sets the output value
-of the channel to the trim value (for example, if :ref:`SERVO5_FUNCTION<SERVO5_FUNCTION>` is 0 then channel 5 will
-output SERVO5_TRIM). The exception to this is when a
+of the channel to 0, ie no PWM pulses being sent. The exception to this is when a
 MAVLink override of the channel or a mission servo set is used. So in
 some ways "disabled" could be called "mission-controlled".
 
@@ -204,7 +203,7 @@ planes.
 Flap
 ++++
 
-When a channel is set as a flap it's value comes from the ``FLAP_IN_CHANNEL`` . The reason you
+When a channel is set as a flap its value comes from the ``FLAP_IN_CHANNEL`` . The reason you
 may want to use this instead of a RCPassThru is that you can setup
 multiple flap channels with different trims and ranges, and you may want
 to take advantage of the :ref:`FLAP_SLEWRATE<FLAP_SLEWRATE>` to limit the speed of flap
@@ -512,8 +511,13 @@ For control of an internal combustion engine's spark plug/igniter, starter motor
 NEOPIXEL LED STRINGS
 --------------------
 
-Neopixel LEDs/Strings can be controlled using ``Function IDs 120-124``, thereby supporting up to four strings independtly controlled. These may be used for ArduPilot notifications and warnings (See :ref:`common-ntf-devices` ) or controlled via LUA scripting (See :ref:`common-lua-scripts`.
+:ref:`Neopixel LEDs/Strings<common-serial-led-neopixel>` can be controlled using ``Function IDs 120-124``, thereby supporting up to four strings independently controlled. These may be used for ArduPilot notifications and warnings (See :ref:`common-ntf-devices` ) or controlled via LUA scripting (See :ref:`common-lua-scripts`.
 This is available in all vehicles.
+
+ProfiLEDs
+---------
+
+:ref:`ProfiLEDs<common-serial-led-ProfiLED>` can be controlled using ``Function IDs 129-132``, thereby supporting up to three strings independently controlled with a common clock. These may be used for ArduPilot notifications and warnings (See :ref:`common-ntf-devices` ) or controlled via LUA scripting (See :ref:`common-lua-scripts`. This is available in all vehicles. See :ref:
 
 
 MISCELLANEOUS FUNCTIONS
@@ -575,7 +579,7 @@ Either upon loading the firmware or selecting the frame type, certain default va
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
 | Tricopter                          |33 |34 |0  |36 |0  |0  |39 |0  |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
-| SingleCopter/ CoAxialCopter        |33 |34 |35 |36 |37 |38 |0  |0  |0  |0   |0   |0   |
+| SingleCopter / CoAxialCopter       |33 |34 |35 |36 |37 |38 |0  |0  |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
 | Traditional Helicopter             |33 |34 |35 |36 |0  |0  |0  |31 |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
@@ -583,11 +587,11 @@ Either upon loading the firmware or selecting the frame type, certain default va
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
 | HeliQuad                           |33 |34 |35 |36 |0  |0  |0  |31 |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
-| Fixed Wing Plan/ Tailsitter        |4  |19 |21 |70 |0  |0  |0  |0  |0  |0   |0   |0   |
+| Fixed Wing Plane / Tailsitter      |4  |19 |21 |70 |0  |0  |0  |0  |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
 | Quadplane                          |4  |19 |21 |70 |33 |34 |35 |36 |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
-| Quadplane  Tricopter               |4  |19 |21 |70 |33 |34 |0  |36 |0  |0   |39  |0   |
+| Quadplane Tricopter                |4  |19 |21 |70 |33 |34 |0  |36 |0  |0   |39  |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+
 | Rover                              |26 |0  |70 |0  |0  |0  |0  |0  |0  |0   |0   |0   |
 +------------------------------------+---+---+---+---+---+---+---+---+---+----+----+----+

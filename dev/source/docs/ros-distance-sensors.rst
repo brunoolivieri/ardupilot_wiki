@@ -45,17 +45,9 @@ Launch MAVROS with default config. You should have rangefinder data in /mavros/d
 
 Send to FCU
 -----------
-.. warning::
-
-    Distance sensor message is currently support on :
-
-    - ArduPilot Master
-    - Copter >= 3.4
-    - Rover >= 3.1.0
-    - Plane >= 3.7.1
 
 ArduPilot support receiving rangefinder data coming from Companion Computer for example.
-To do that, setup a Mavlink rangefinder on ArduPilot side and simply set a subscriber in MAVROS plugin :
+To do that, setup a MAVLink rangefinder on ArduPilot side and simply set a subscriber in MAVROS plugin :
 
 .. code-block:: none
 

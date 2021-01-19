@@ -8,12 +8,12 @@ Welcome to the ArduPilot Development Site
 
     Keep up with the latest ArduPilot related blogs on `ArduPilot.org! <https://ardupilot.org/>`__
 
-:ref:`ArduPilot <ardupilot:home>` (sometimes known as APM) is the leading open source autopilot
+:ref:`ArduPilot <ardupilot:home>` is the leading open source autopilot
 system supporting multi-copters, traditional helicopters, fixed wing aircraft, rovers, submarines and antenna trackers.
 
 We pride ourselves on being **versatile** (rich in features with support for a large number of flight controllers, sensors and frame types), **trusted** (reliable and predictable) and **open** (both in terms of software and in our team's organisation and governance).
 
-The source code is developed by a group of voluteer and profession (i.e. paid) developers who, along with our users and `Partners <https://ardupilot.org/about/Partners>`__, make up the `ArduPilot Community <https://ardupilot.org>`__.
+The source code is developed by a group of volunteer and professional (i.e. paid) developers who, along with our users and `Partners <https://ardupilot.org/about/Partners>`__, make up the `ArduPilot Community <https://ardupilot.org>`__.
 
 Getting Involved
 ================
@@ -21,7 +21,7 @@ Getting Involved
 New developers are always welcome! The best way to start is to:
 
 - read this wiki to learn the basics of the software and :ref:`how the team works <how-the-team-works>`
-- get involved with the other developers by posting on the `Developer Team Forum <https://discuss.ardupilot.org/c/development-team>`__, chat to us on `Gitter <https://gitter.im/ArduPilot/ardupilot>`__ or join the :ref:`weekly development call <ardupilot-mumble-server>`.  You can also find a large number of users and some developers in the `ArduPilot facebook group <https://www.facebook.com/groups/ArduPilot.org>`__.  :ref:`All channels <common-contact-us>` are open to all.  Lurk for a while to get a feel for it, then participate!
+- get involved with the other developers by posting on the `Developer Team Forum <https://discuss.ardupilot.org/c/development-team>`__, chat to us on`ArduPilot Discord Chat <https://ardupilot.org/discord>`__ or join the :ref:`weekly development call <ardupilot-discord-server>`.  You can also find a large number of users and some developers in the `ArduPilot facebook group <https://www.facebook.com/groups/ArduPilot.org>`__.  :ref:`All channels <common-contact-us>` are open to all.  Lurk for a while to get a feel for it, then participate!
 - find a specific bug you'd like to fix or a feature you'd like to add (check out the `good first issues <https://github.com/ArduPilot/ardupilot/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22>`__, recent `issues from Randy <https://github.com/ArduPilot/ardupilot/issues/created_by/rmackay9>`__ or our :ref:`roadmap <roadmap>` for ideas).
 - fix the bug in your own clone and :ref:`test <simulation-2>` that it's working
 - submit the change to the main code base :ref:`via a pull request <submitting-patches-back-to-master>`.
@@ -44,9 +44,8 @@ The :ref:`Autopilot Hardware Options <common-autopilots>` page provides an overv
 To get going quickly please consider purchasing one of the :ref:`ready-to-fly vehicles <common-rtf>` including the very low-cost `SkyRocket/SkyViper drone <https://ardupilot.org/copter/docs/skyrocket.html>`__.
 
 The ArduPilot source code includes the `AP-HAL <https://github.com/ArduPilot/ardupilot/tree/master/libraries/AP_HAL>`__
-hardware abstraction layer, making it relatively easy to port the code to a
-wide range of autopilot boards. See this `blog post <https://diydrones.com/profiles/blogs/lots-of-changes-to-apm-development>`__
-for more information on the move to AP-HAL.
+Hardware Abstraction Layer, making it relatively easy to port the code to a
+wide range of autopilot boards.
 
 Project List
 ============
@@ -77,7 +76,7 @@ ArduPilot dev team.
 -  APM Planner 2.0 (`wiki <http://planner2.ardupilot.com/>`__,
    `code <https://github.com/ArduPilot/apm_planner>`__) is a ground
    station specifically for APM written in C++ using the Qt libraries
--  `MAVProxy <http://ardupilot.github.io/MAVProxy/html/index.html>`__
+-  :ref:`MAVProxy <mavproxy:home>`
    - command line oriented and scriptable ground station (mostly used by developers)
 -  `DroneKit <http://dronekit.io/>`__ - APM SDK for apps running on vehicles, mobile devices and/or in the cloud.
 -  MinimOSD (`wiki <http://code.google.com/p/arducam-osd/wiki/minimosd>`__,
@@ -151,6 +150,7 @@ Full Table of Contents
     Porting to a new Flight Controller <docs/porting>
     Advanced Hardware Info <docs/pixhawk-advanced-hardware-info>
     MAVProxy Developer GCS <docs/mavproxy-developer-gcs>
+    Resources for GCS Developers <docs/gcs-resources>
     RTF Vehicle Developer Information <docs/ready-to-fly-rtf-vehicle-developer-information>
     How The Team Works <docs/how-the-team-works>
     Events <docs/events>
@@ -158,5 +158,7 @@ Full Table of Contents
     GSoC 2020 project ideas <docs/gsoc-ideas-list>
     Wiki Editing Guide <docs/common-wiki_editing_guide>
     USB IDs <docs/USB-IDs>
+    User Alerts <docs/user-alerts-developer>
+    Upcoming Features <docs/common-master-features>
     Appendix <docs/common-appendix>
     Full Table of Contents <docs/common-table-of-contents>

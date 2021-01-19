@@ -40,10 +40,13 @@ automation in our :ref:`Video Demos <rover-video-demonstrations>`).
     Boats <docs/boat-configuration>
     Balance Bots <docs/balance_bot-home>
     Sailboats <docs/sailboat-home>
+    Walking Robots <docs/walking-robots>
     Reference Frames <docs/reference-frames>
     Use-Cases and Applications <docs/common-use-cases-and-applications>
     Antenna Tracking <docs/common-antenna-tracking>
     Simulation <docs/common-simulation>
+    User Alerts <docs/common-user-alerts>
+    Upcoming Features <docs/common-master-features>
     Appendix <docs/common-appendix>
     Full Table of Contents <docs/common-table-of-contents>
 

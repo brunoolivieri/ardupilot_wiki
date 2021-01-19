@@ -39,7 +39,7 @@ However, by intentionally inducing the appropriate motor tilt into each mount, Y
 
 For H mixing, simply tilt all the motors inward toward the plane by 2-3 degrees, either by shimming or intentional design of the motor mounts. This provides a rotational thrust boost in addition to the torque differential, as the diagonal motor pairs are sped up/slowed down. With additional YAW authority, small motor angle imperfections can be automatically overcome by the autopilot, as well as giving the pilot additional YAW authority.
 
-.. note:: be aware that Quadplanes rarely have the same yaw authority as multicopters due to the greater mass and surface area to wind that a plane presents. Expect to be only able to face into the wind if its not relatively calm.
+.. note:: be aware that Quadplanes rarely have the same yaw authority as multicopters due to the greater mass and surface area to wind that a plane presents. Expect to be only able to face into the wind if it's not relatively calm.
 
 AHRS "LEVEL" Trim
 =================
@@ -58,6 +58,25 @@ Copter Motors vs Servos
 =======================
 
 If you are using a configuration where there are copter motors involved (almost all QuadPlanes do except single/dual motor tailsitters), the motor outputs are assigned as PWM unless changed (see :ref:`common-dshot` ). But the PWM is at a 400Hz update rate, not 50Hz. If a servo is used in an  output group sharing the same timer as one of the motor outputs, then it too will be operating at 400HZ and must be able to tolerate that. Most analog servos will overheat or burn up. Most digital servos can tolerate that rate. Check your autopilot's :ref:`hardware description <common-autopilots>` page for the DShot output groups, which indicates which outputs share the same timer.
+
+.. _tilt-rotor-setup:
+
+Tilt Rotor Servo Setup
+======================
+
+Adjustment of the tilt servo's max,min,trim output values for conventional and tailsitter tilt-rotors are show below. Whether an endpoint is adjusted by SERVOx_MAX or MIN, depends on if it has been reversed to get proper directional operation.
+
+.. image:: ../../../images/tiltrotor-setup.jpg
+
+--------------------------------------------------------------
+
+.. image:: ../../../images/tailsitter-tilt-setup.jpg
+
+--------------------------------------------------------------
+
+.. image:: ../../../images/Bicopter-tilt-setup.jpg
+
+
 
 Battery Sag
 ===========
